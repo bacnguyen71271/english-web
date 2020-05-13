@@ -1,0 +1,45 @@
+.owl-carousel .item {
+  height: 10rem;
+  background: #4DC7A0;
+  padding: 1rem;
+}
+
+.header-top .logo>img{
+  height: 60px;
+}
+
+nav.navbar {
+  background-color: #d40000!important;
+}
+
+a.nav-link {
+  color: #fff !important;
+}
+li.nav-item.active a {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+li.nav-item a {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+}
+
+footer h4 {
+  font-size: 1.2rem;
+}
+
+footer p {
+  margin-bottom: 6px;
+}
+
+.user-info .dropdown-menu{
+  right: 0px !important;
+  width: 200px !important;
+  left: -33px !important;
+}
