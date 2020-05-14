@@ -9,12 +9,13 @@
     {{ style('vendor/owl-carousel/assets/owl.theme.default.css') }}
     {{ style('vendor/fontawesome/css/all.min.css') }}
     {{ script('vendor/jquery-3.5.1.min.js') }}
+    @!section('style')
 </head>
 <body>
 <header>
     <div class="header-top container justify-content-between d-flex">
         <div class="logo d-flex py-3 pl-2">
-            <img class="align-self-center" src="{{ assetsUrl('images/default-logo.png') }}">
+            <a href="/"><img class="align-self-center" src="{{ assetsUrl('images/default-logo.png') }}"></a>
         </div>
         <div class="d-flex search-main-header">
 {{--            <form class="form-inline">--}}
@@ -186,5 +187,7 @@
 {{ script('vendor/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js') }}
 {{ script('vendor/owl-carousel/owl.carousel.min.js') }}
 {{ script('js/main.js') }}
+
+@!section('script')
 </body>
 </html>

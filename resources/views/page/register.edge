@@ -1,10 +1,17 @@
 @layout('layout.mainlayout')
+@section('style')
+<style>
+
+</style>
+@endsection
+
 @section('content')
     <section>
         <div class="container d-flex py-5">
             <form method='post' action='/register' class="login-register-form m-auto py-3 my-4">
                 {{ csrfField() }}
                 <h3 class="text-center mb-3">Tạo tài khoản của bạn</h3>
+                <div class="alert" role="alert"></div>
                 <div class="row">
                     <div class="form-group col-12">
                         <span>Họ và tên</span>
@@ -42,4 +49,8 @@
             </form>
         </div>
     </section>
+
+@endsection
+@section('script')
+
 @endsection
