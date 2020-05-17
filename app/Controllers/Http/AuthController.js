@@ -5,14 +5,6 @@ const { validate } = use('Validator');
 
 class AuthController {
 
-    async registerIndex ({ auth, view, request, response}) {
-        try {
-            await auth.check();
-            return response.redirect('/');
-        } catch (error) {
-            return response.send(view.render('page.register'));
-        }
-    }
 
     async register ({ auth, request, response }) {
         const { username, email, phone,password, repassword } = request.all();
@@ -52,29 +44,67 @@ class AuthController {
         }
     }
 
-    async loginIndex ({ auth, view, request, response}) {
-        try {
-            await auth.check();
-            return response.redirect('/');
-        } catch (error) {
-            return response.send(view.render('page.login'));
-        }
-    }
-
     async login ({ auth, request, response }) {
         const { email, password, remember } = request.all();
-        await auth.remember(remember).attempt(email, password);
-        response.redirect('back');
-        return
+        let error = '';
+
+        if(email && password){
+            try{
+                const token = await auth
+                    // .withRefreshToken()
+                    .attempt(email, password);
+                response.send({
+                    code: 1,
+                    msg: 'success',
+                    data: token
+                });
+            }catch (e) {
+                if(e.message.indexOf('E_PASSWORD_MISMATCH') !== -1){
+                    error = "Mật khẩu không đúng";
+                }
+
+                if(e.message.indexOf('E_USER_NOT_FOUND') !== -1){
+                    error = "Không tìm thấy tài khoản";
+                }
+            }
+        }else{
+            error = 'Thiếu dữ liệu: email, password';
+        }
+
+        if(error !== ''){
+            response.send({
+                code: 0,
+                msg: error,
+                data: ''
+            });
+        }
     }
 
     async logout ({ auth, request, response }) {
         try {
-            await auth.logout();
+            const apiToken = auth.getAuthHeader()
+            // let listToken = await auth.listTokens();
+            await auth
+                .authenticator('jwt')
+                .revokeTokens([apiToken]);
+            // revokeTokensForUser(user, tokens, delete = false)
+            await Database.table('black_list_tokens').insert({
+                token : apiToken,
+                created_at : Database.fn.now(),
+                updated_at : Database.fn.now()
+            });
+            response.send({
+                code: 1,
+                msg: '',
+                data: ''
+            });
         }catch (e) {
-
+            response.send({
+                code: 0,
+                msg: e.message,
+                data: ''
+            });
         }
-        return response.redirect('/');
     }
 
     show ({ auth, params }) {
@@ -85,4 +115,4 @@ class AuthController {
     }
 }
 
-module.exports = AuthController
+module.exports = AuthController;

@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Hello Adonis</title>
+
+    @!section('viewauth')
     {{ style('css/style') }}
     {{ style('vendor/bootstrap-4.4.1-dist/css/bootstrap.min.css') }}
     {{ style('vendor/owl-carousel/assets/owl.carousel.min.css') }}
@@ -13,44 +15,22 @@
 </head>
 <body>
 <header>
+    {{ csrfField() }}
     <div class="header-top container justify-content-between d-flex">
         <div class="logo d-flex py-3 pl-2">
             <a href="/"><img class="align-self-center" src="{{ assetsUrl('images/default-logo.png') }}"></a>
         </div>
         <div class="d-flex search-main-header">
-{{--            <form class="form-inline">--}}
-{{--                <div class="input-group">--}}
-{{--                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">--}}
-{{--                    <div class="input-group-prepend">--}}
-{{--                        <span class="input-group-text" id="basic-addon1">@</span>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </form>--}}
+            {{--            <form class="form-inline">--}}
+            {{--                <div class="input-group">--}}
+            {{--                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">--}}
+            {{--                    <div class="input-group-prepend">--}}
+            {{--                        <span class="input-group-text" id="basic-addon1">@</span>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--            </form>--}}
         </div>
         <div class="d-flex align-self-center user-info">
-            @loggedIn
-            <div class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ auth.user.username }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <hr/>
-                    <form action="/logout" method="post">
-                        {{ csrfField() }}
-                        <button class="dropdown-item" type="submit">Logout</button>
-                    </form>
-                </div>
-            </div>
-            @else
-                <div class="">
-                    <a class="btn my-2 my-sm-0" href="/login">Đăng nhập</a>
-                    <a class="btn btn-outline-success my-2 my-sm-0" href="/register">Đăng ký</a>
-                </div>
-                @endloggedIn
         </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

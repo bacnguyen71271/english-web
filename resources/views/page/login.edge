@@ -2,9 +2,10 @@
 @section('content')
     <section>
         <div class="container d-flex py-5">
-            <form method='post' action='/login' class="login-register-form m-auto py-3 my-4">
+            <form method='post' action='/login' class="login-form m-auto py-3 my-4">
                 {{ csrfField() }}
                 <h3 class="text-center mb-3">Đăng nhập tài khoản của bạn</h3>
+                <div class="alert" role="alert"></div>
                 <div class="row">
                     <div class="form-group col-12">
                         <span>Email</span>

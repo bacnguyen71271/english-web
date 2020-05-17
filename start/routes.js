@@ -15,16 +15,26 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
+
+
 Route.on('/').render('page.home');
 Route.on('/register').render('page.register');
 Route.on('/login').render('page.login');
 
 
 Route.group(() => {
+    Route.on('/').render('admin.index');
+    Route.on('/product-category').render('admin.product-category');
+
+}).prefix('admin').middleware(['admin']);
+
+
+Route.group(() => {
     Route.post('auth/register', 'AuthController.register').middleware('guest');
     Route.post('auth/login', 'AuthController.login').middleware('guest');
+    Route.post('auth/logout', 'AuthController.logout').middleware('apiAuth');
 
-    Route.get('users/info', 'UserController.register').middleware('guest');
+    Route.get('users/info', 'UserController.getUserInfo').middleware(['apiAuth']);
 }).prefix('api/v1');
 
 //

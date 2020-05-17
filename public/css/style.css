@@ -15,6 +15,12 @@ nav.navbar {
 a.nav-link {
   color: #fff !important;
 }
+
+
+.user-info a {
+  color: #333 !important;
+}
+
 li.nav-item.active a {
   color: #ffffff !important;
   font-weight: 600;
