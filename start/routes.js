@@ -19,14 +19,16 @@ const Route = use('Route')
 
 Route.on('/').render('page.home');
 Route.on('/register').render('page.register');
-Route.on('/login').render('page.login');
 
+
+Route.get('/login', ({ view }) => {return view.render('page.login')});
+Route.post('/login', 'AuthController.login');
 
 Route.group(() => {
     Route.on('/').render('admin.index');
     Route.on('/product-category').render('admin.product-category');
 
-}).prefix('admin').middleware(['admin']);
+}).prefix('admin').middleware('auth');//.middleware(['admin']);
 
 
 Route.group(() => {

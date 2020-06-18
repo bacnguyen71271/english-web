@@ -27,130 +27,133 @@ $('.owl-carousel').owlCarousel({
 /**
  * Check token
  */
-$(document).ready(function () {
-    token = localStorage.getItem('token');
-    tokenType = localStorage.getItem('tokentype');
-    csrf = $('input[name="_csrf"]').val();
 
-    if (token !== '') {
-        $.ajax({
-            url: '/api/v1/users/info',
-            type: 'GET',
-            dataType: 'json',
-            headers: {"Authorization": tokenType + ' ' + token},
-            success: function (res) {
-                if (res.code === 0) {
-                    isAuth = false;
-                    user = null;
-                    let viewAuth = $('meta[property="view:auth"]').attr('content');
-                    if (viewAuth === 'auth') {
-                        location.replace('/login');
-                    }
-                } else {
-                    user = res.data;
-                    isAuth = true;
-                }
-                userInfo();
-            }
-        })
-    }
+// $(document).ready(function () {
+//     token = localStorage.getItem('token');
+//     tokenType = localStorage.getItem('tokentype');
+//     csrf = $('input[name="_csrf"]').val();
+//
+//     if (token !== '') {
+//         $.ajax({
+//             url: '/api/v1/users/info',
+//             type: 'GET',
+//             dataType: 'json',
+//             headers: {"Authorization": tokenType + ' ' + token},
+//             success: function (res) {
+//                 if (res.code === 0) {
+//                     isAuth = false;
+//                     user = null;
+//                     let viewAuth = $('meta[property="view:auth"]').attr('content');
+//                     if (viewAuth === 'auth') {
+//                         location.replace('/login');
+//                     }
+//                 } else {
+//                     user = res.data;
+//                     isAuth = true;
+//                 }
+//                 userInfo();
+//             }
+//         })
+//     }
+//
+// });
 
-});
-
-function userInfo() {
-    if (isAuth && user) {
-        panelUserInfo.html(
-            '<div class="nav-item dropdown ">\n' +
-            '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"\n' +
-            '                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +user.username+
-            '                </a>\n' +
-            '                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">\n' +
-            '                    <a class="dropdown-item" href="#">Action</a>\n' +
-            '                    <a class="dropdown-item" href="#">Another action</a>\n' +
-            '                    <a class="dropdown-item" href="#">Something else here</a>\n' +
-            '                    <hr/>\n' +
-            '                    <button class="dropdown-item btn-logout">Logout</button>\n' +
-            '                </div>\n' +
-            '            </div>'
-        );
-    } else {
-        panelUserInfo.html(
-            '<a class="btn my-2 my-sm-0" href="/login">Đăng nhập</a>\n' +
-            '<a class="btn btn-outline-success my-2 my-sm-0" href="/register">Đăng ký</a>'
-        );
-    }
-}
+// function userInfo() {
+//     if (isAuth && user) {
+//         panelUserInfo.html(
+//             '<div class="nav-item dropdown ">\n' +
+//             '                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"\n' +
+//             '                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +user.username+
+//             '                </a>\n' +
+//             '                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">\n' +
+//             '                    <a class="dropdown-item" href="#">Action</a>\n' +
+//             '                    <a class="dropdown-item" href="#">Another action</a>\n' +
+//             '                    <a class="dropdown-item" href="#">Something else here</a>\n' +
+//             '                    <hr/>\n' +
+//             '                    <button class="dropdown-item btn-logout">Logout</button>\n' +
+//             '                </div>\n' +
+//             '            </div>'
+//         );
+//     } else {
+//         panelUserInfo.html(
+//             '<a class="btn my-2 my-sm-0" href="/login">Đăng nhập</a>\n' +
+//             '<a class="btn btn-outline-success my-2 my-sm-0" href="/register">Đăng ký</a>'
+//         );
+//     }
+// }
 
 /**
  * Logout
  */
 
-panelUserInfo.delegate('.btn-logout', 'click',function () {
-    $.ajax({
-        url: '/api/v1/auth/logout',
-        type: 'POST',
-        dataType: 'json',
-        data : {
-            _csrf: csrf
-        },
-        headers: {"Authorization": tokenType + ' ' + token},
-        success: function (res) {
-            if(res.code === 1){
-                isAuth = false;
-                user = null;
-                localStorage.removeItem('token');
-                userInfo();
-            }
-        }
-    })
-});
+// panelUserInfo.delegate('.btn-logout', 'click',function () {
+//     $.ajax({
+//         url: '/api/v1/auth/logout',
+//         type: 'POST',
+//         dataType: 'json',
+//         data : {
+//             _csrf: csrf
+//         },
+//         headers: {"Authorization": tokenType + ' ' + token},
+//         success: function (res) {
+//             if(res.code === 1){
+//                 isAuth = false;
+//                 user = null;
+//                 localStorage.removeItem('token');
+//                 userInfo();
+//             }
+//         }
+//     })
+// });
 
 /**
  * Dang ky
  */
-$('.register-form').submit(function (e) {
-    let self = $(this);
-    e.preventDefault();
-    $.ajax({
-        url: '/api/v1/auth/register',
-        type: 'POST',
-        dataType: 'json',
-        data: self.serialize(),
-        success: function (res) {
-            self.find('.alert').removeClass('alert-danger');
-            self.find('.alert').html('');
-            if (res.code === 0) {
-                self.find('.alert').addClass('alert-danger');
-                self.find('.alert').html(res.msg);
-            } else {
-                localStorage.setItem('token', res.data.token);
-                location.replace('/');
-            }
-        }
-    })
-});
+
+// $('.register-form').submit(function (e) {
+//     let self = $(this);
+//     e.preventDefault();
+//     $.ajax({
+//         url: '/api/v1/auth/register',
+//         type: 'POST',
+//         dataType: 'json',
+//         data: self.serialize(),
+//         success: function (res) {
+//             self.find('.alert').removeClass('alert-danger');
+//             self.find('.alert').html('');
+//             if (res.code === 0) {
+//                 self.find('.alert').addClass('alert-danger');
+//                 self.find('.alert').html(res.msg);
+//             } else {
+//                 localStorage.setItem('token', res.data.token);
+//                 location.replace('/');
+//             }
+//         }
+//     })
+// });
 
 /**
  * Dang nhap
  */
-$('.login-form').submit(function (e) {
-    let self = $(this);
-    e.preventDefault();
-    $.ajax({
-        url: '/api/v1/auth/login',
-        type: 'POST',
-        dataType: 'json',
-        data: self.serialize(),
-        success: function (res) {
-            self.find('.alert').removeClass('alert-danger');
-            self.find('.alert').html('');
-            if (res.code === 0) {
-                self.find('.alert').addClass('alert-danger');
-                self.find('.alert').html(res.msg);
-            } else {
-                localStorage.setItem('token', res.data.token);
-                location.replace('/');
-            }
-        }
-    })
-});
+
+// $('.login-form').submit(function (e) {
+//     let self = $(this);
+//     e.preventDefault();
+//     $.ajax({
+//         url: '/api/v1/auth/login',
+//         type: 'POST',
+//         dataType: 'json',
+//         data: self.serialize(),
+//         success: function (res) {
+//             self.find('.alert').removeClass('alert-danger');
+//             self.find('.alert').html('');
+//             if (res.code === 0) {
+//                 self.find('.alert').addClass('alert-danger');
+//                 self.find('.alert').html(res.msg);
+//             } else {
+//                 localStorage.setItem('token', res.data.token);
+//                 location.replace('/');
+//             }
+//         }
+//     })
+// });
