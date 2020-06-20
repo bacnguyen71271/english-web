@@ -46,24 +46,35 @@ class AuthController {
 
     async login ({ auth, session, request, response }) {
         const { email, password, remember } = request.all();
+        let error = '';
 
         if(email && password){
             try{
-                const token = await auth.attempt(email, password);
+                await auth.attempt(email, password);
+
+                return response.send({
+                    code: 1,
+                    msg: "Thành công !",
+                })
             }catch (e) {
                 if(e.message.indexOf('E_PASSWORD_MISMATCH') !== -1){
-                    session.withErrors({ notification: 'Mật khẩu không đúng' }).flashAll();
+                    error = "Mật khẩu không đúng";
                 }
 
                 if(e.message.indexOf('E_USER_NOT_FOUND') !== -1){
-                    session.withErrors({ notification: 'Không tìm thấy tài khoản' }).flashAll();
+                    error = "Không tìm thấy tài khoản";
                 }
             }
         }else{
-            session.withErrors({ notification: 'Thiếu dữ liệu: email, password' }).flashAll();
+            error = "Thiếu dữ liệu: email, password";
         }
-        session.flashAll();
-        return response.redirect('back')
+
+        if(error !== ''){
+            return response.send({
+                code: 0,
+                msg: error,
+            })
+        }
     }
 
     async logout ({ auth, request, response }) {

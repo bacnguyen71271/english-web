@@ -22,6 +22,8 @@ Route.on('/register').render('page.register');
 
 
 Route.get('/login', ({ view }) => {return view.render('page.login')});
+Route.get('/lien-he', ({ view }) => {return view.render('page.contact')});
+Route.get('/quen-mat-khau', ({ view }) => {return view.render('page.forgot-password')});
 Route.post('/login', 'AuthController.login');
 
 Route.group(() => {

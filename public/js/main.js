@@ -5,24 +5,24 @@ let user = null;
 let panelUserInfo = $('.user-info');
 let csrf = null;
 
-$('.owl-carousel').owlCarousel({
-    loop: true,
-    margin: 10,
-    nav: false,
-    responsiveClass: true,
-    responsive: {
-        0: {
-            items: 1,
-        },
-        600: {
-            items: 1,
-        },
-        1000: {
-            items: 1,
-            loop: true
-        }
-    }
-});
+// $('.owl-carousel').owlCarousel({
+//     loop: true,
+//     margin: 10,
+//     nav: false,
+//     responsiveClass: true,
+//     responsive: {
+//         0: {
+//             items: 1,
+//         },
+//         600: {
+//             items: 1,
+//         },
+//         1000: {
+//             items: 1,
+//             loop: true
+//         }
+//     }
+// });
 
 /**
  * Check token
@@ -136,24 +136,24 @@ $('.owl-carousel').owlCarousel({
  * Dang nhap
  */
 
-// $('.login-form').submit(function (e) {
-//     let self = $(this);
-//     e.preventDefault();
-//     $.ajax({
-//         url: '/api/v1/auth/login',
-//         type: 'POST',
-//         dataType: 'json',
-//         data: self.serialize(),
-//         success: function (res) {
-//             self.find('.alert').removeClass('alert-danger');
-//             self.find('.alert').html('');
-//             if (res.code === 0) {
-//                 self.find('.alert').addClass('alert-danger');
-//                 self.find('.alert').html(res.msg);
-//             } else {
-//                 localStorage.setItem('token', res.data.token);
-//                 location.replace('/');
-//             }
-//         }
-//     })
-// });
+$('#signin-tab').submit(function (e) {
+    let self = $(this);
+    e.preventDefault();
+    $.ajax({
+        url: '/login',
+        type: 'POST',
+        dataType: 'json',
+        data: self.serialize(),
+        success: function (res) {
+            console.log(res);
+            self.find('div[role="alert"]').removeClass('alert alert-danger');
+            self.find('div[role="alert"]').html('');
+            if (res.code === 0) {
+                self.find('div[role="alert"]').addClass('alert alert-danger');
+                self.find('div[role="alert"]').html(res.msg);
+            } else {
+                location.reload();
+            }
+        }
+    })
+});
