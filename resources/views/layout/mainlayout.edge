@@ -97,7 +97,7 @@
                                                            data-toggle="dropdown">Liên kết hữu ích</a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="tel:0859559696"><i class="czi-support text-muted mr-2"></i>085 955 9696</a></li>
-                    <li><a class="dropdown-item" href="order-tracking.html"><i class="czi-location text-muted mr-2"></i>Đăng ký mua thẻ</a></li>
+{{--                    <li><a class="dropdown-item" href="order-tracking.html"><i class="uaczi-location text-muted mr-2"></i>Đăng ký mua thẻ</a></li>--}}
                 </ul>
             </div>
             <div class="topbar-text text-nowrap d-none d-md-inline-block"><i class="czi-support"></i><span
@@ -111,11 +111,14 @@
     <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
     <div class="navbar-sticky bg-light">
         <div class="navbar navbar-expand-lg navbar-light py-0">
-            <div class="container"><a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="/"
-                                      style="min-width: 7rem;"><img width="142"
-                                                                    src="{{ assetsUrl('images/default-logo.png') }}"
-                                                                    alt="Cartzilla"></a><a
-                        class="navbar-brand d-sm-none mr-2" href="index.html" style="min-width: 4.625rem;"><img
+            <div class="container">
+              <a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0 text-logo" href="/"
+                                      style="min-width: 7rem;">
+                <h1 style="margin-bottom: 0px; font-size: 2.4rem; color: #0d87e0;">ESING<span style="font-size: 1.6rem;">-unso</span></h1>
+                <h3 style="text-align: center;color: #0d87e0; font-size: 1rem; margin-bottom: 0px; font-weight: 400;">Nghe là nhớ !</h3>
+{{--                <img width="142" src="{{ assetsUrl('images/default-logo.png') }}" alt="Cartzilla">--}}
+              </a>
+              <a class="navbar-brand d-sm-none mr-2" href="index.html" style="min-width: 4.625rem;"><img
                             width="74" src="images/logo-icon.png" alt="Cartzilla"></a>
 {{--                <div class="input-group-overlay d-none d-lg-flex mx-4" style="width: 50%;">--}}
 {{--                    <input class="form-control appended-form-control" type="text" placeholder="Tìm kiếm khóa học">--}}
