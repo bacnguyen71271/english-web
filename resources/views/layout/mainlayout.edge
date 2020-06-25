@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ESING-unso Học là nhớ</title>
+
+    @!section('viewauth')
+    {{ style('vendor/bootstrap-4.4.1-dist/css/bootstrap.min.css') }}
+    {{ style('vendor/owl-carousel/assets/owl.carousel.min.css') }}
+    {{ style('vendor/owl-carousel/assets/owl.theme.default.css') }}
+    {{ style('vendor/fontawesome/css/all.min.css') }}
+    {{ style('css/style') }}
+    {{ style('css/theme') }}
+    {{ script('vendor/jquery-3.5.1.min.js') }}
+    @!section('style')
+</head>
+<body>
+@if(!auth.user.username)
+<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" href="#signin-tab" data-toggle="tab" role="tab" aria-selected="true"><i class="czi-unlocked mr-2 mt-n1"></i>Đăng nhập</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#signup-tab" data-toggle="tab" role="tab" aria-selected="false"><i class="czi-user mr-2 mt-n1"></i>Đăng ký</a></li>
+                </ul>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body tab-content py-4">
+                <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
+                    {{ csrfField() }}
+                    <div class="" role="alert"></div>
+                    <div class="form-group">
+                        <label for="si-email">Email của bạn</label>
+                        <input class="form-control" type="email" name="email" id="si-email" required>
+                        <div class="invalid-feedback">Vui lòng cung cấp một địa chỉ email hợp lệ.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="si-password">Mật khẩu</label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" name="password" id="si-password" required>
+                            <label class="password-toggle-btn">
+                                <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex flex-wrap justify-content-between">
+                        <div class="custom-control custom-checkbox mb-2">
+                            <input class="custom-control-input" type="checkbox" id="si-remember">
+                            <label class="custom-control-label" for="si-remember">Nhớ đăng nhập</label>
+                        </div><a class="font-size-sm" href="/quen-mat-khau">Quên mật khẩu ?</a>
+                    </div>
+                    <button class="btn btn-primary btn-block btn-shadow" type="submit">Đăng nhập</button>
+                </form>
+                <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
+                    {{ csrfField() }}
+                    <div class="form-group">
+                        <label for="su-name">Tên của bạn</label>
+                        <input class="form-control" type="text" id="su-name" required>
+                        <div class="invalid-feedback">Xin vui lòng điền tên của bạn.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="su-email">Địa chỉ email</label>
+                        <input class="form-control" type="email" id="su-email" required>
+                        <div class="invalid-feedback">Vui lòng cung cấp một địa chỉ email hợp lệ.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="su-password">Mật khẩu</label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" id="su-password" required>
+                            <label class="password-toggle-btn">
+                                <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="su-password-confirm">Nhập lại mật khẩu</label>
+                        <div class="password-toggle">
+                            <input class="form-control" type="password" id="su-password-confirm" required>
+                            <label class="password-toggle-btn">
+                                <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block btn-shadow" type="submit">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
+<header class="box-shadow-sm">
+    <!-- Topbar-->
+    <div class="topbar topbar-dark bg-dark">
+        <div class="container">
+            <div class="topbar-text dropdown d-md-none"><a class="topbar-link dropdown-toggle" href="#"
+                                                           data-toggle="dropdown">Liên kết hữu ích</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="tel:0972325469"><i class="czi-support text-muted mr-2"></i>0972 325 469</a></li>
+{{--                    <li><a class="dropdown-item" href="order-tracking.html"><i class="uaczi-location text-muted mr-2"></i>Đăng ký mua thẻ</a></li>--}}
+                </ul>
+            </div>
+            <div class="topbar-text text-nowrap d-none d-md-inline-block"><i class="czi-support"></i><span
+                        class="text-muted mr-1">Hỗ trợ</span>
+                <a class="topbar-link" href="tel:0972325469">0972 325 469</a></div>
+            <div class="ml-3 text-nowrap">
+{{--                <a class="topbar-link mr-4 d-none d-md-inline-block" href="/"><i class="czi-location"></i>Đăng ký mua thẻ</a>--}}
+            </div>
+        </div>
+    </div>
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+    <div class="navbar-sticky bg-light">
+        <div class="navbar navbar-expand-lg navbar-light py-0">
+            <div class="container">
+              <a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0 text-logo" href="/"
+                                      style="min-width: 7rem;">
+                <h1 style="margin-bottom: 0px; font-size: 2.4rem; color: #0d87e0;">ESING<span style="font-size: 1.6rem;">-unso</span></h1>
+                <h3 style="text-align: center;color: #0d87e0; font-size: 1rem; margin-bottom: 0px; font-weight: 400;">Nghe là nhớ !</h3>
+{{--                <img width="142" src="{{ assetsUrl('images/default-logo.png') }}" alt="Cartzilla">--}}
+              </a>
+              <a class="navbar-brand d-sm-none mr-2" href="index.html" style="min-width: 4.625rem;">
+                  <h1 style="line-height: 27px;margin-bottom: 0px; font-size: 2.4rem; color: #0d87e0;">ESING<span style="font-size: 1.6rem;">-unso</span></h1>
+                  <h3 style="text-align: center;color: #0d87e0; font-size: 1rem; margin-bottom: 0px; font-weight: 400;">Nghe là nhớ !</h3>
+              </a>
+{{--                <div class="input-group-overlay d-none d-lg-flex mx-4" style="width: 50%;">--}}
+{{--                    <input class="form-control appended-form-control" type="text" placeholder="Tìm kiếm khóa học">--}}
+{{--                    <div class="input-group-append-overlay"><span class="input-group-text"><i--}}
+{{--                                    class="czi-search"></i></span></div>--}}
+{{--                </div>--}}
+                <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-expanded="false"><span class="navbar-toggler-icon"></span></button>
+                    <a class="navbar-tool navbar-stuck-toggler" href="#"><span
+                                class="navbar-tool-tooltip">Menu</span>
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-menu"></i></div>
+                    </a>
+
+                    @if(!auth.user.username)
+                    <a class="navbar-tool ml-1 ml-lg-0 mr-n1 mr-lg-2" href="#signin-modal" data-toggle="modal">
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-user"></i></div>
+                        <div class="navbar-tool-text ml-n3">
+                            <small>Xin chào</small>
+                            Đăng ký/Đăng nhập
+                        </div>
+                    </a>
+                    @endif
+
+                    @if(auth.user.username)
+                    <div class="navbar-tool dropdown ml-3">
+                        <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-user"></i></div>
+                        <div class="navbar-tool-text ml-n3">
+
+                            <small>Xin chào, {{  auth.user.username }} </small>
+                            Tài khoản của tôi
+                        </div>
+                        <!-- Cart dropdown-->
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="account-signin.html">Sign In / Sign Up</a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 py-0">
+            <div class="container">
+                <div class="my-4 collapse navbar-collapse" id="navbarCollapse">
+                    <!-- Departments menu-->
+                    <!-- Primary menu-->
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Tiếng anh mầm non</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Tiếng anh phổ thông</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Tiếng anh cho người lớn</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Kỹ năng</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Học qua video</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Học và chơi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/lien-he">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="main-content">
+    @!section('content')
+</div>
+
+<footer class="bg-dark pt-5">
+    <div class="container">
+        <div class="row pb-2">
+            <div class="col-md-4 col-sm-6">
+                <div class="widget widget-links widget-light pb-2 mb-4">
+                    <h2 class="widget-title text-light">Công ty TNHH MTV Hải Âu TSC</h2>
+                    <ul class="widget-list">
+                        <li class="widget-list-item d-flex widget-list-link"><p>Địa chỉ: Khu đô thị Nam Đầm Vạc, Vĩnh Yên, Vĩnh Phúc.</p></li>
+                        <li class="widget-list-item d-flex widget-list-link">SĐT: <a class="widget-list-link ml-2" href="tel:0972325469"> 0972 325 469</a></li>
+                        <li class="widget-list-item d-flex widget-list-link">Email: <a class="widget-list-link ml-2" href="mailto:mtvhaiautsc@gmail.com"> mtvhaiautsc@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="widget widget-links widget-light pb-2 mb-4">
+                    <h3 class="widget-title text-light">Liên kết</h3>
+                    <ul class="widget-list">
+                        <li class="widget-list-item"><a class="widget-list-link" href="#">Tiếng anh mầm non</a></li>
+                        <li class="widget-list-item"><a class="widget-list-link" href="#">Tiếng anh phổ thông</a></li>
+                        <li class="widget-list-item"><a class="widget-list-link" href="#">Tiếng anh cho người lớn</a></li>
+                        <li class="widget-list-item"><a class="widget-list-link" href="#">Kỹ năng</a></li>
+                        <li class="widget-list-item"><a class="widget-list-link" href="#">Học qua video</a></li>
+                        <li class="widget-list-item"><a class="widget-list-link" href="#">Học và chơi</a></li>
+                        <li class="widget-list-item"><a class="widget-list-link" href="/lien-he">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="widget pb-2 mb-4">
+                    <h3 class="widget-title text-light pb-1">Nhận thông báo</h3>
+                    <form class="validate" action="https://studio.us12.list-manage.com/subscribe/post-json?u=c7103e2c981361a6639545bd5&amp;amp;id=29ca296126&amp;c=?" method="get" name="mc-embedded-subscribe-form" id="mc-embedded-subscribe-form">
+                        <div class="input-group input-group-overlay flex-nowrap">
+                            <div class="input-group-prepend-overlay"><span class="input-group-text text-muted font-size-base"><i class="czi-mail"></i></span></div>
+                            <input class="form-control prepended-form-control" type="email" name="EMAIL" id="mce-EMAIL" value="" placeholder="Email của bạn" required="">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit" name="subscribe" id="mc-embedded-subscribe">Đăng ký</button>
+                            </div>
+                        </div>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                            <input type="text" name="b_c7103e2c981361a6639545bd5_29ca296126" tabindex="-1">
+                        </div><small class="form-text text-light opacity-50" id="mc-helper">* Đăng ký nhận bản tin của chúng tôi để nhận được ưu đãi giảm giá sớm, cập nhật và thông tin sản phẩm mới.</small>
+                        <div class="subscribe-status"></div>
+                    </form>
+                </div>
+                <div class="widget pb-2 mb-4">
+                    <h3 class="widget-title text-light pb-1">Tải ứng dụng</h3>
+                    <div class="d-flex flex-wrap">
+                        <div class="mr-2 mb-2"><a class="btn-market btn-apple" href="#" role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">App Store</span></a></div>
+                        <div class="mb-2"><a class="btn-market btn-google" href="#" role="button"><span class="btn-market-subtitle">Download on the</span><span class="btn-market-title">Google Play</span></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-darker">
+        <div class="container">
+            <div class="py-2 font-size-xs text-light opacity-50 text-center text-md-left">© All rights reserved. Made by <a class="text-light" href="/" target="_blank" rel="noopener">Esing123.com</a></div>
+        </div>
+    </div>
+</footer>
+
+{{ script('vendor/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js') }}
+{{ script('vendor/owl-carousel/owl.carousel.min.js') }}
+{{ script('js/vendor.min.js') }}
+{{ script('js/theme.min.js') }}
+{{ script('js/main.js') }}
+
+@!section('script')
+</body>
+</html>
