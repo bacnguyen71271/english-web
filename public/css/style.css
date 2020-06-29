@@ -1980,3 +1980,13 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
     height: 10px;
     float: left
 }
+
+
+ul.navbar-nav a {
+  color: #fff !important;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-top: .875rem;
+  padding-bottom: .7rem;
+}
