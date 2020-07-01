@@ -28,7 +28,8 @@
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/validator": "^5.0.6",
     "fluent-ffmpeg": "^2.1.2",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "voucher-code-generator": "^1.1.1"
   },
   "devDependencies": {},
   "autoload": {

@@ -110,33 +110,32 @@ let csrf = null;
  * Dang ky
  */
 
-// $('.register-form').submit(function (e) {
-//     let self = $(this);
-//     e.preventDefault();
-//     $.ajax({
-//         url: '/api/v1/auth/register',
-//         type: 'POST',
-//         dataType: 'json',
-//         data: self.serialize(),
-//         success: function (res) {
-//             self.find('.alert').removeClass('alert-danger');
-//             self.find('.alert').html('');
-//             if (res.code === 0) {
-//                 self.find('.alert').addClass('alert-danger');
-//                 self.find('.alert').html(res.msg);
-//             } else {
-//                 localStorage.setItem('token', res.data.token);
-//                 location.replace('/');
-//             }
-//         }
-//     })
-// });
+$('#signup').submit(function (e) {
+    let self = $(this);
+    e.preventDefault();
+    $.ajax({
+        url: '/api/v1/auth/register',
+        type: 'POST',
+        dataType: 'json',
+        data: self.serialize(),
+        success: function (res) {
+            $('.signup-notification').removeClass('alert alert-danger');
+            $('.signup-notification').html('');
+            if (res.code === 0) {
+                $('.signup-notification').addClass('alert alert-danger');
+                $('.signup-notification').html(res.msg);
+            } else {
+                location.replace('/');
+            }
+        }
+    })
+});
 
 /**
  * Dang nhap
  */
 
-$('#signin-tab').submit(function (e) {
+$('#signin').submit(function (e) {
     let self = $(this);
     e.preventDefault();
     $.ajax({
@@ -146,11 +145,11 @@ $('#signin-tab').submit(function (e) {
         data: self.serialize(),
         success: function (res) {
             console.log(res);
-            self.find('div[role="alert"]').removeClass('alert alert-danger');
-            self.find('div[role="alert"]').html('');
+            $('.signin-notification').removeClass('alert alert-danger');
+            $('.signin-notification').html('');
             if (res.code === 0) {
-                self.find('div[role="alert"]').addClass('alert alert-danger');
-                self.find('div[role="alert"]').html(res.msg);
+                $('.signin-notification').addClass('alert alert-danger');
+                $('.signin-notification').html(res.msg);
             } else {
                 location.reload();
             }

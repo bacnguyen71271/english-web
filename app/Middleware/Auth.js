@@ -15,7 +15,7 @@ class Auth {
             await auth.check();
             await next()
         } catch (error) {
-            return response.redirect('/login')
+            return response.redirect('/dang-nhap')
         }
     }
 }

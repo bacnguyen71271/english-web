@@ -1987,6 +1987,16 @@ ul.navbar-nav a {
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
-  padding-top: .875rem;
-  padding-bottom: .7rem;
+  padding-top: .875rem !important;
+  padding-bottom: .7rem !important;
+}
+
+.account-menu{
+    border: 1px solid #ff6b01;
+    padding-right: 13px;
+    border-radius: 10px;
+}
+
+.account-menu a{
+    color: #ff6b01 !important;
 }

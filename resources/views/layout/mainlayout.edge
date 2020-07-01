@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>ESING-unso Học là nhớ</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @!section('viewauth')
     {{ style('vendor/bootstrap-4.4.1-dist/css/bootstrap.min.css') }}
     {{ style('vendor/owl-carousel/assets/owl.carousel.min.css') }}
@@ -15,81 +15,81 @@
     @!section('style')
 </head>
 <body>
-@if(!auth.user.username)
-<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <ul class="nav nav-tabs card-header-tabs" role="tablist">
-                    <li class="nav-item"><a class="nav-link active" href="#signin-tab" data-toggle="tab" role="tab" aria-selected="true"><i class="czi-unlocked mr-2 mt-n1"></i>Đăng nhập</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#signup-tab" data-toggle="tab" role="tab" aria-selected="false"><i class="czi-user mr-2 mt-n1"></i>Đăng ký</a></li>
-                </ul>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body tab-content py-4">
-                <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">
-                    {{ csrfField() }}
-                    <div class="" role="alert"></div>
-                    <div class="form-group">
-                        <label for="si-email">Email của bạn</label>
-                        <input class="form-control" type="email" name="email" id="si-email" required>
-                        <div class="invalid-feedback">Vui lòng cung cấp một địa chỉ email hợp lệ.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="si-password">Mật khẩu</label>
-                        <div class="password-toggle">
-                            <input class="form-control" type="password" name="password" id="si-password" required>
-                            <label class="password-toggle-btn">
-                                <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group d-flex flex-wrap justify-content-between">
-                        <div class="custom-control custom-checkbox mb-2">
-                            <input class="custom-control-input" type="checkbox" id="si-remember">
-                            <label class="custom-control-label" for="si-remember">Nhớ đăng nhập</label>
-                        </div><a class="font-size-sm" href="/quen-mat-khau">Quên mật khẩu ?</a>
-                    </div>
-                    <button class="btn btn-primary btn-block btn-shadow" type="submit">Đăng nhập</button>
-                </form>
-                <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">
-                    {{ csrfField() }}
-                    <div class="form-group">
-                        <label for="su-name">Tên của bạn</label>
-                        <input class="form-control" type="text" id="su-name" required>
-                        <div class="invalid-feedback">Xin vui lòng điền tên của bạn.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="su-email">Địa chỉ email</label>
-                        <input class="form-control" type="email" id="su-email" required>
-                        <div class="invalid-feedback">Vui lòng cung cấp một địa chỉ email hợp lệ.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="su-password">Mật khẩu</label>
-                        <div class="password-toggle">
-                            <input class="form-control" type="password" id="su-password" required>
-                            <label class="password-toggle-btn">
-                                <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="su-password-confirm">Nhập lại mật khẩu</label>
-                        <div class="password-toggle">
-                            <input class="form-control" type="password" id="su-password-confirm" required>
-                            <label class="password-toggle-btn">
-                                <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>
-                            </label>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary btn-block btn-shadow" type="submit">Đăng ký</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-@endif
-<header class="box-shadow-sm">
+{{--@if(!auth.user.username)--}}
+{{--<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog">--}}
+{{--    <div class="modal-dialog modal-dialog-centered" role="document">--}}
+{{--        <div class="modal-content">--}}
+{{--            <div class="modal-header">--}}
+{{--                <ul class="nav nav-tabs card-header-tabs" role="tablist">--}}
+{{--                    <li class="nav-item"><a class="nav-link active" href="#signin-tab" data-toggle="tab" role="tab" aria-selected="true"><i class="czi-unlocked mr-2 mt-n1"></i>Đăng nhập</a></li>--}}
+{{--                    <li class="nav-item"><a class="nav-link" href="#signup-tab" data-toggle="tab" role="tab" aria-selected="false"><i class="czi-user mr-2 mt-n1"></i>Đăng ký</a></li>--}}
+{{--                </ul>--}}
+{{--                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+{{--            </div>--}}
+{{--            <div class="modal-body tab-content py-4">--}}
+{{--                <form class="needs-validation tab-pane fade show active" autocomplete="off" novalidate id="signin-tab">--}}
+{{--                    {{ csrfField() }}--}}
+{{--                    <div class="" role="alert"></div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="si-email">Email của bạn</label>--}}
+{{--                        <input class="form-control" type="email" name="email" id="si-email" required>--}}
+{{--                        <div class="invalid-feedback">Vui lòng cung cấp một địa chỉ email hợp lệ.</div>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="si-password">Mật khẩu</label>--}}
+{{--                        <div class="password-toggle">--}}
+{{--                            <input class="form-control" type="password" name="password" id="si-password" required>--}}
+{{--                            <label class="password-toggle-btn">--}}
+{{--                                <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>--}}
+{{--                            </label>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group d-flex flex-wrap justify-content-between">--}}
+{{--                        <div class="custom-control custom-checkbox mb-2">--}}
+{{--                            <input class="custom-control-input" type="checkbox" id="si-remember">--}}
+{{--                            <label class="custom-control-label" for="si-remember">Nhớ đăng nhập</label>--}}
+{{--                        </div><a class="font-size-sm" href="/quen-mat-khau">Quên mật khẩu ?</a>--}}
+{{--                    </div>--}}
+{{--                    <button class="btn btn-primary btn-block btn-shadow" type="submit">Đăng nhập</button>--}}
+{{--                </form>--}}
+{{--                <form class="needs-validation tab-pane fade" autocomplete="off" novalidate id="signup-tab">--}}
+{{--                    {{ csrfField() }}--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="su-name">Tên của bạn</label>--}}
+{{--                        <input class="form-control" type="text" id="su-name" required>--}}
+{{--                        <div class="invalid-feedback">Xin vui lòng điền tên của bạn.</div>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="su-email">Địa chỉ email</label>--}}
+{{--                        <input class="form-control" type="email" id="su-email" required>--}}
+{{--                        <div class="invalid-feedback">Vui lòng cung cấp một địa chỉ email hợp lệ.</div>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="su-password">Mật khẩu</label>--}}
+{{--                        <div class="password-toggle">--}}
+{{--                            <input class="form-control" type="password" id="su-password" required>--}}
+{{--                            <label class="password-toggle-btn">--}}
+{{--                                <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>--}}
+{{--                            </label>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="su-password-confirm">Nhập lại mật khẩu</label>--}}
+{{--                        <div class="password-toggle">--}}
+{{--                            <input class="form-control" type="password" id="su-password-confirm" required>--}}
+{{--                            <label class="password-toggle-btn">--}}
+{{--                                <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>--}}
+{{--                            </label>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <button class="btn btn-primary btn-block btn-shadow" type="submit">Đăng ký</button>--}}
+{{--                </form>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
+{{--@endif--}}
+<header class="box-shadow">
     <!-- Topbar-->
 {{--    <div class="topbar topbar-dark bg-dark">--}}
 {{--        <div class="container">--}}
@@ -135,13 +135,13 @@
                     </a>
 
                     @if(!auth.user.username)
-                    <a class="navbar-tool ml-1 ml-lg-0 mr-n1 mr-lg-2" href="#signin-modal" data-toggle="modal">
+                    <div class="navbar-tool account-menu ml-1 ml-lg-0 mr-n1 mr-lg-2">
                         <div class="navbar-tool-icon-box"><i class="navbar-tool-icon czi-user"></i></div>
                         <div class="navbar-tool-text ml-n3">
                             <small>Xin chào</small>
-                            Đăng ký/Đăng nhập
+                            <a href="/dang-ky">Đăng ký</a> hoặc <a href="/dang-nhap">Đăng nhập</a>
                         </div>
-                    </a>
+                    </div>
                     @endif
 
                     @if(auth.user.username)
@@ -156,7 +156,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="account-signin.html">Sign In / Sign Up</a></li>
                             <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="/dang-xuat">Đăng xuất</a></li>
                         </ul>
                     </div>
                     @endif

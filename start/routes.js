@@ -25,21 +25,30 @@ Route.get('/login', ({ view }) => {return view.render('page.login')});
 Route.get('/esing-unso', ({ view }) => {return view.render('page.esing-unso')});
 Route.get('/lien-he', ({ view }) => {return view.render('page.contact')});
 Route.get('/quen-mat-khau', ({ view }) => {return view.render('page.forgot-password')});
+Route.get('/dang-nhap', ({ view }) => {return view.render('page.dang-nhap')}).middleware('only_guest');
+Route.get('/dang-ky', ({ view }) => {return view.render('page.dang-ky')}).middleware('only_guest');
+Route.get('/dang-xuat', 'AuthController.logout').middleware('auth');
+
 Route.post('/login', 'AuthController.login');
 
 Route.group(() => {
     Route.on('/').render('admin.index');
     Route.on('/product-category').render('admin.product-category');
 
-}).prefix('admin').middleware('auth');//.middleware(['admin']);
+    Route.get('/product/code', 'ProductController.viewProductCode');
+
+}).prefix('admin').middleware('admin');//.middleware(['admin']);
 
 
 Route.group(() => {
-    Route.post('auth/register', 'AuthController.register').middleware('guest');
+    Route.post('auth/register', 'AuthController.register');
     Route.post('auth/login', 'AuthController.login').middleware('guest');
     Route.post('auth/logout', 'AuthController.logout').middleware('apiAuth');
 
     Route.get('users/info', 'UserController.getUserInfo').middleware(['apiAuth']);
+
+    Route.post('generator-code', 'ProductController.generatorCode').middleware('admin');
+    Route.post('apply-code', 'ProductController.applyCodeProduct').middleware('admin');
 }).prefix('api/v1');
 
 //

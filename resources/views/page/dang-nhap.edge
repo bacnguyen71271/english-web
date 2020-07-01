@@ -1,0 +1,42 @@
+@layout('layout.mainlayout')
+@section('content')
+    <div class="container py-5 py-lg-5 my-5">
+        <div class="row">
+            <div class="col-md-6 m-auto">
+                <div class="card border-0 box-shadow">
+                    <div class="card-body">
+                        <h2 class="h2 mb-1 text-center">Đăng nhập</h2>
+                        <div class="py-4"><div class="signin-notification" role="alert"></div></div>
+                        <hr>
+                        <form class="needs-validation pt-5" novalidate="" id="signin">
+                            {{ csrfField() }}
+                            <div class="input-group-overlay form-group">
+                                <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-user"></i></span></div>
+                                <input class="form-control prepended-form-control" autofocus type="text" name="email" placeholder="Tên đăng nhập" required="">
+                            </div>
+                            <div class="input-group-overlay form-group">
+                                <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="czi-locked"></i></span></div>
+                                <div class="password-toggle">
+                                    <input class="form-control prepended-form-control" type="password" name="password" placeholder="Mật khẩu" required="">
+                                    <label class="password-toggle-btn">
+                                        <input class="custom-control-input" type="checkbox"><i class="czi-eye password-toggle-indicator"></i><span class="sr-only">Hiện mật khẩu</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap justify-content-between">
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" checked="" id="remember_me">
+                                    <label class="custom-control-label" for="remember_me">Nhớ đăng nhập</label>
+                                </div><a class="nav-link-inline font-size-sm" href="/quen-mat-khau">Quên mật khẩu ?</a>
+                            </div>
+                            <hr class="mt-4">
+                            <div class="text-right pt-4">
+                                <button class="btn btn-primary" type="submit"><i class="czi-sign-in mr-2 ml-n21"></i>Đăng nhập</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
