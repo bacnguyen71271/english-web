@@ -10,8 +10,8 @@ class ProductCodeSchema extends Schema {
       table.string('code',15).unique();
       table.integer('product-id').defaultTo(0);
       table.integer('status');
-      table.timestamp('used_at').notNullable();
-      table.timestamp('release_at').notNullable();
+      table.timestamp('used_at');
+      table.timestamp('release_at');
       table.timestamps();
     })
   }

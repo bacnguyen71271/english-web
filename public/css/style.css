@@ -2007,3 +2007,9 @@ ul.navbar-nav a {
     min-width: unset !important;
     width: 90% !important;
 }
+
+@media (max-width: 991.98px){
+  body {
+    padding-top: 0 !important;
+  }
+}
