@@ -8,10 +8,10 @@ class ProductCodeSchema extends Schema {
     this.create('product_codes', (table) => {
       table.increments();
       table.string('code',15).unique();
-      table.integer('product-id').defaultTo(0);
+      table.integer('product_id').defaultTo(0);
       table.integer('status');
-      table.timestamp('used_at');
-      table.timestamp('release_at');
+      table.datetime('used_at');
+      table.datetime('release_at');
       table.timestamps();
     })
   }
