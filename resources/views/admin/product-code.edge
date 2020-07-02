@@ -132,12 +132,24 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Leanne Graham</td>
-                                        <td>sincere@april.biz</td>
-                                        <td>@mdo</td>
-                                    </tr>
+                                    @each(code in productcode)
+                                        <tr>
+                                            <th scope="row">{{ code.code }}</th>
+                                            <td></td>
+                                            @if(code.product_id == 1)
+                                                <td>ESING level 1</td>
+                                            @elseif(code.product_id == 2)
+                                                <td>ESING level 2</td>
+                                            @elseif(code.product_id == 3)
+                                                <td>ESING level 3</td>
+                                            @endif
+
+                                            <td>{{ code.created_at }}</td>
+                                            <td></td>
+                                            <td>{{ code.status }}</td>
+                                        </tr>
+                                    @endeach
+
 
                                     </tbody>
                                 </table>

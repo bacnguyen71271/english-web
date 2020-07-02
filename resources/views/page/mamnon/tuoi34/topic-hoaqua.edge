@@ -1,0 +1,67 @@
+@layout('layout.mainlayout')
+@section('content')
+    <div class="bg-secondary py-2">
+        <div class="container py-2 py-lg-3">
+
+            <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+                <h1 class="h3 mb-0">Chủ đề hoa quả</h1>
+            </div>
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb flex-lg-nowrap justify-content-center justify-content-lg-start">
+                        <li class="breadcrumb-item"><a class="text-nowrap" href="/"><i class="czi-home"></i>Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a class="text-nowrap" href="/tieng-anh-mam-non">Tiếng anh mầm mon</a></li>
+                        <li class="breadcrumb-item"><a class="text-nowrap" href="/tieng-anh-mam-non/tuoi3-4">Tuổi 3-4</a></li>
+                        <li class="breadcrumb-item text-nowrap active" aria-current="page">Chủ đề hoa quả</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section class="container pt-grid-gutter">
+        <div class="row" id="video">
+            <div class="col-12 mb-3">
+                <h2 class="h4 pb-3">1. Bài hát</h2>
+                <video id="videoplay" style="min-width: 400px; width: 80%; margin-bottom: 30px !important;" class="align-items-center d-flex m-auto" controls></video>
+            </div>
+        </div>
+
+        <div class="row" id="pronounce">
+            <div class="col-12 mb-3">
+                <h2 class="h4 pb-3">2. Từ vựng - Phát âm</h2>
+                <span class="text-center">Đang cập nhật nội dung</span>
+            </div>
+        </div>
+
+        <div class="row" id="picture">
+            <div class="col-12 mb-3">
+                <h2 class="h4 pb-3">3. Hình ảnh</h2>
+                <span class="text-center">Đang cập nhật nội dung</span>
+            </div>
+        </div>
+    </section>
+
+@endsection
+
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        const video = document.getElementById('videoplay');
+        const videoSrc = '/video/output.m3u8';
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play();
+            });
+        }
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play();
+            });
+        }
+    </script>
+@endsection

@@ -2000,3 +2000,10 @@ ul.navbar-nav a {
 .account-menu a{
     color: #ff6b01 !important;
 }
+
+
+#videoplay{
+    max-width: 1000px !important;
+    min-width: unset !important;
+    width: 90% !important;
+}

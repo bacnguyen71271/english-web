@@ -7,8 +7,7 @@ class ProductController {
 
     async viewProductCode({ request, auth, response, view }){
 
-        let productCode = await Database.table('product_codes')
-
+        let productCode = await Database.table('product_codes');
         return response.send(view.render('admin.product-code',{
             productcode: productCode
         }))
@@ -63,7 +62,7 @@ class ProductController {
             if(!productCodeCheck){
                 await Database.table('product_codes').insert({
                     "code": code,
-                    "product-id": productid,
+                    "product_id": productid,
                     "status": 1,
                     "created_at":Database.fn.now(),
                     "updated_at":Database.fn.now(),
