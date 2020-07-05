@@ -32,7 +32,7 @@ class AuthController {
         if(!checkCode) {
             error = 'Mã sản phẩm đã được sử dụng';
         }else {
-            // error = 'Mã sản phẩm không tồn tại';
+            error = 'Mã sản phẩm không tồn tại';
         }
 
         if(error === ''){
