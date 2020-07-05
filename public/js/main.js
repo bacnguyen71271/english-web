@@ -158,6 +158,29 @@ $('#signin').submit(function (e) {
 });
 
 
+$('#signin-tab').submit(function (e) {
+    let self = $(this);
+    e.preventDefault();
+    $.ajax({
+        url: '/login',
+        type: 'POST',
+        dataType: 'json',
+        data: self.serialize(),
+        success: function (res) {
+            console.log(res);
+            self.find('div[role="alert"]').removeClass('alert alert-danger');
+            self.find('div[role="alert"]').html('');
+            if (res.code === 0) {
+                self.find('div[role="alert"]').addClass('alert alert-danger');
+                self.find('div[role="alert"]').html(res.msg);
+            } else {
+                location.reload();
+            }
+        }
+    })
+});
+
+
 var $videoSrc;
 $('.video-btn').click(function() {
     $videoSrc = $(this).data( "src" );

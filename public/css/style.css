@@ -2013,38 +2013,38 @@ ul.navbar-nav a {
     padding-top: 0 !important;
   }
 
-  .account-menu {
-    display: none !important;
-  }
-  .mobile-account{
-    display: block !important;
-  }
-}
-
-
-@media (min-width: 991.98px){
   /*.account-menu {*/
+  /*  display: none !important;*/
+  /*}*/
+  /*.mobile-account{*/
   /*  display: block !important;*/
   /*}*/
-
-  .mobile-account{
-    display: none !important;
-  }
 }
 
 
-.mobile-account {
-  height: 50px;
-}
+/*@media (min-width: 991.98px){*/
+/*  !*.account-menu {*!*/
+/*  !*  display: block !important;*!*/
+/*  !*}*!*/
 
-.mobile-account .container a {
-  justify-content: space-between;
-  width: 50%;
-  text-align: center;
-  padding: 6px 0px 6px 0px;
-}
+/*  .mobile-account{*/
+/*    display: none !important;*/
+/*  }*/
+/*}*/
 
-.mobile-account .container {
-  display: flex;
-  text-align: center;
-}
+
+/*.mobile-account {*/
+/*  height: 50px;*/
+/*}*/
+
+/*.mobile-account .container a {*/
+/*  justify-content: space-between;*/
+/*  width: 50%;*/
+/*  text-align: center;*/
+/*  padding: 6px 0px 6px 0px;*/
+/*}*/
+
+/*.mobile-account .container {*/
+/*  display: flex;*/
+/*  text-align: center;*/
+/*}*/

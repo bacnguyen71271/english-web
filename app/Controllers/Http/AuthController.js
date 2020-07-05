@@ -26,11 +26,13 @@ class AuthController {
         }
 
         let checkCode = await Database.table('product_codes')
-            .where('code', productcode)
-            .where('userid','');
+            .where('code', productcode).first();
+            // .where('userid','');
 
-        if(!checkCode) {
-            error = 'Mã sản phẩm đã được sử dụng';
+        if(checkCode > 0) {
+            if(checkCode.userid !== ''){
+                error = 'Mã sản phẩm đã được sử dụng';
+            }
         }else {
             error = 'Mã sản phẩm không tồn tại';
         }
