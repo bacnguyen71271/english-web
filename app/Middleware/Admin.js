@@ -9,9 +9,15 @@ class Admin {
    * @param {Request} ctx.request
    * @param {Function} next
    */
-  async handle ({ request }, next) {
+  async handle({request, response, auth }, next) {
+    try {
+      await auth.check();
+      await next()
+    } catch (error) {
+      return response.redirect('/dang-nhap')
+    }
     // call next to advance the request
-    await next()
+    // await next()
   }
 }
 

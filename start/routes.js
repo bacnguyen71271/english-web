@@ -40,8 +40,9 @@ Route.group(() => {
 }).prefix('admin').middleware('admin');//.middleware(['admin']);
 
 
+Route.get('/tieng-anh-mam-non', ({ view }) => {return view.render('page.mamnon.index')});
+
 Route.group(() => {
-    Route.on('/').render('page.mamnon.index');
     Route.on('/tuoi-34').render('page.mamnon.tuoi34');
     Route.on('/tuoi-45').render('page.mamnon.tuoi45');
     Route.on('/tuoi-56').render('page.mamnon.tuoi56');
@@ -78,7 +79,7 @@ Route.group(() => {
     Route.on('/tuoi-56/chu-de-cang-hang-khong').render('page.mamnon.tuoi56.topic-canghangkhong');
     Route.on('/tuoi-56/chu-de-thoi-gian').render('page.mamnon.tuoi56.topic-thoigian');
 
-}).prefix('/tieng-anh-mam-non');//.middleware(['admin']);
+}).prefix('/tieng-anh-mam-non').middleware(['admin']);
 
 
 Route.group(() => {
