@@ -164,19 +164,21 @@
                 </div>
             </div>
         </div>
+      @if(!auth.user.username)
         <div class="mobile-account navbar navbar-light navbar-stuck-menu mt-n2 py-0">
           <div class="container">
             <a href="/dang-ky">Đăng ký</a><a href="/dang-nhap">Đăng nhập</a>
           </div>
         </div>
+      @endif
         <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 py-0" style="background-color: #0e87e0;">
             <div class="container">
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <!-- Departments menu-->
                     <!-- Primary menu-->
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="/tieng-anh-mam-non">Tiếng anh mầm non</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Tiếng anh phổ thông</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/tieng-anh-mam-non">Tiếng anh Mầm non</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Tiếng anh Phổ thông</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Tiếng anh cho người lớn</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Kỹ năng</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Học qua video</a></li>
