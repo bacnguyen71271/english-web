@@ -5,7 +5,7 @@ const { validate } = use('Validator');
 
 class AuthController {
     async register ({ auth, request, response }) {
-        const { username, password, repassword, productcode } = request.all();
+        const { username, password, repassword, productcode, email, phone, fullname } = request.all();
         let error = '';
 
         if(username && productcode && password && repassword ){
@@ -25,9 +25,33 @@ class AuthController {
             error = 'Hãy nhập những mục bắt buộc';
         }
 
+        let checkCode = await Database.table('product_codes')
+            .where('code', productcode)
+            .where('userid','');
+
+        if(!checkCode) {
+            error = 'Mã sản phẩm đã được sử dụng';
+        }else {
+            // error = 'Mã sản phẩm không tồn tại';
+        }
+
         if(error === ''){
-            await User.create({ username, password});
+            let user = await User.create({ username, password});
             await auth.attempt(username, password);
+            await Database.table('product_codes')
+                .where('code', productcode)
+                .update({
+                    'userid' : user.id,
+                    'used_at' : Database.fn.now()
+                });
+
+            await Database.table('users')
+                .where('id', user.id)
+                .update({
+                    'email' : email,
+                    'phone' : phone,
+                    'fullname' : fullname
+                });
             response.send({
                 code: 1,
                 msg: 'success',

@@ -10,6 +10,7 @@ class ProductCodeSchema extends Schema {
       table.string('code',15).unique();
       table.integer('product_id').defaultTo(0);
       table.integer('status');
+      table.integer('userid');
       table.datetime('used_at');
       table.datetime('release_at');
       table.timestamps();

@@ -56,7 +56,7 @@ class ProductController {
 
             let productCodeCheck = await Database.table('product_codes')
                 .where('code', code)
-                .where('product-id', productid)
+                .where('product_id', productid)
                 .first();
 
             if(!productCodeCheck){

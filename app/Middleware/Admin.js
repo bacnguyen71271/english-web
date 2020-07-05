@@ -16,6 +16,7 @@ class Admin {
     } catch (error) {
       return response.redirect('/dang-nhap')
     }
+
     // call next to advance the request
     // await next()
   }

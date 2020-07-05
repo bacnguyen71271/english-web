@@ -42,6 +42,7 @@ const namedMiddleware = {
   auth: 'App/Middleware/Auth',
   apiAuth: 'App/Middleware/apiAuth',
   admin: 'App/Middleware/Admin',
+  uproduct: 'App/Middleware/UserProduct',
   only_guest: 'App/Middleware/OnlyGuest',
   guest: 'Adonis/Middleware/AllowGuestOnly'
 };

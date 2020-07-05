@@ -60,7 +60,7 @@ Route.group(() => {
 
     Route.on('/tuoi-45/chu-de-cong-vien').render('page.mamnon.tuoi45.topic-congvien');
     Route.on('/tuoi-45/chu-de-duong-pho').render('page.mamnon.tuoi45.topic-duongpho');
-    Route.on('/tuoi-45/chu-de-nha-vuon').render('page.mamnon.tuoi45.topic-nhavuon');
+    Route.on('/tuoi-45/chu-de-nha-va-vuon').render('page.mamnon.tuoi45.topic-nhavuon');
     Route.on('/tuoi-45/chu-de-phuong-tien-giao-thong').render('page.mamnon.tuoi45.topic-ptgt');
     Route.on('/tuoi-45/chu-de-thien-nhien').render('page.mamnon.tuoi45.topic-thiennhien');
     Route.on('/tuoi-45/chu-de-thu-cung').render('page.mamnon.tuoi45.topic-thucung');
@@ -79,7 +79,7 @@ Route.group(() => {
     Route.on('/tuoi-56/chu-de-cang-hang-khong').render('page.mamnon.tuoi56.topic-canghangkhong');
     Route.on('/tuoi-56/chu-de-thoi-gian').render('page.mamnon.tuoi56.topic-thoigian');
 
-}).prefix('/tieng-anh-mam-non').middleware(['admin']);
+}).prefix('/tieng-anh-mam-non').middleware(['uproduct']);
 
 
 Route.group(() => {
