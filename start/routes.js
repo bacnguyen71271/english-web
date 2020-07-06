@@ -23,7 +23,7 @@ Route.on('/register').render('page.register');
 
 
 Route.get('/enc.key',async ({ response }) => {
-    return response.download(Helpers.publicPath('enc.key'))
+    return response.download(Helpers.publicPath('key/enc.key'))
 }).middleware('uproduct');
 
 Route.get('/login', ({ view }) => {return view.render('page.login')});
