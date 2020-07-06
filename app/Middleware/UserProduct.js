@@ -29,9 +29,15 @@ class Admin {
         product = 3;
       }
 
-      let checkUser = await Database.table('product_codes')
-          .where('userid', user.id)
-          .where('product_id', product);
+      let checkUser;
+      if(url.indexOf('enc.key') !== -1){
+        checkUser = await Database.table('product_codes')
+            .where('userid', user.id);
+      }else{
+        checkUser = await Database.table('product_codes')
+            .where('userid', user.id)
+            .where('product_id', product);
+      }
 
       if(checkUser.length > 0){
         await next()
