@@ -1,4 +1,5 @@
 'use strict'
+const Helpers = use('Helpers');
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,10 @@ const Route = use('Route')
 Route.on('/').render('page.home');
 Route.on('/register').render('page.register');
 
+
+Route.get('/enc.key',async ({ response }) => {
+    return response.download(Helpers.publicPath('enc.key'))
+}).middleware('uproduct');
 
 Route.get('/login', ({ view }) => {return view.render('page.login')});
 Route.get('/esing-unso', ({ view }) => {return view.render('page.esing-unso')});
@@ -80,7 +85,6 @@ Route.group(() => {
     Route.on('/tuoi-56/chu-de-thoi-gian').render('page.mamnon.tuoi56.topic-thoigian');
 
 }).prefix('/tieng-anh-mam-non').middleware(['uproduct']);
-
 
 Route.group(() => {
     Route.post('auth/register', 'AuthController.register');
