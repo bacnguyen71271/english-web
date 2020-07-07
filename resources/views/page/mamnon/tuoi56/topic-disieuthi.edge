@@ -23,10 +23,7 @@
         <div class="row" id="video">
             <div class="col-12 mb-3">
                 <h2 class="h4 pb-3">1. Bài hát</h2>
-
-                <video id="videoplay"  style="min-width: 400px; width: 80%; margin-bottom: 30px !important;" data-setup="{}" class="video-js align-items-center d-flex m-auto" controls>
-                    <source src="http://video.edusing123.com/videos/di-sieu-thi/index.m3u8" type="application/x-mpegURL">
-                </video>
+                <video id="videoplay" style="min-width: 400px; width: 80%; margin-bottom: 30px !important;" class="align-items-center d-flex m-auto" controls></video>
             </div>
         </div>
 
@@ -48,23 +45,23 @@
 @endsection
 
 @section('script')
-{{--    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>--}}
-{{--    <script>--}}
-{{--        const video = document.getElementById('videoplay');--}}
-{{--        const videoSrc = 'http://video.edusing123.com/videos/di-sieu-thi/index.m3u8';--}}
-{{--        if (Hls.isSupported()) {--}}
-{{--            var hls = new Hls();--}}
-{{--            hls.loadSource(videoSrc);--}}
-{{--            hls.attachMedia(video);--}}
-{{--            hls.on(Hls.Events.MANIFEST_PARSED, function() {--}}
-{{--                video.play();--}}
-{{--            });--}}
-{{--        }--}}
-{{--        else if (video.canPlayType('application/vnd.apple.mpegurl')) {--}}
-{{--            video.src = videoSrc;--}}
-{{--            video.addEventListener('loadedmetadata', function() {--}}
-{{--                video.play();--}}
-{{--            });--}}
-{{--        }--}}
-{{--    </script>--}}
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        const video = document.getElementById('videoplay');
+        const videoSrc = 'http://video.edusing123.com/videos/di-sieu-thi/index.m3u8';
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play();
+            });
+        }
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play();
+            });
+        }
+    </script>
 @endsection
