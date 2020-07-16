@@ -31,7 +31,7 @@ class AuthController {
             .first();
 
         if(checkCode) {
-            if(checkCode.userid !== ''){
+            if(checkCode.userid !== '' && checkCode.userid !== null){
                 error = 'Mã sản phẩm đã được sử dụng';
             }
         }else {
