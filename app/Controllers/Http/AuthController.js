@@ -76,6 +76,7 @@ class AuthController {
         console.log(email + ':' + password);
         if(email && password){
             try{
+                await auth.logout();
                 await auth.attempt(email, password);
 
                 return response.send({
