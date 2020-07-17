@@ -15,7 +15,7 @@ class Admin {
       const authCookie = request.cookie('auth_cookie');
       if(!authCookie){
         response.cookie('auth_cookie', uuid.v4(),{
-          domain: '127.0.0.1',
+          // domain: '127.0.0.1',
           path: '/',
           // httpOnly: true,
         })
