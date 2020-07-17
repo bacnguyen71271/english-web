@@ -21,18 +21,13 @@ const Route = use('Route')
 Route.on('/').render('page.home');
 Route.on('/register').render('page.register');
 
-
-Route.get('/enc.key',async ({ response }) => {
-    return response.download(Helpers.publicPath('key/enc.key'))
-}).middleware('uproduct');
-
 Route.get('/login', ({ view }) => {return view.render('page.login')});
 Route.get('/esing-unso', ({ view }) => {return view.render('page.esing-unso')});
 Route.get('/lien-he', ({ view }) => {return view.render('page.contact')});
 Route.get('/quen-mat-khau', ({ view }) => {return view.render('page.forgot-password')});
 Route.get('/dang-nhap', ({ view }) => {return view.render('page.dang-nhap')}).middleware('only_guest');
 Route.get('/dang-ky', ({ view }) => {return view.render('page.dang-ky')}).middleware('only_guest');
-Route.get('/dang-xuat', 'AuthController.logout').middleware('auth');
+Route.get('/dang-xuat', 'AuthController.logout');//.middleware('auth');
 
 Route.post('/login', 'AuthController.login');
 
@@ -45,9 +40,11 @@ Route.group(() => {
 }).prefix('admin').middleware('admin');//.middleware(['admin']);
 
 
-Route.get('/tieng-anh-mam-non', ({ view }) => {return view.render('page.mamnon.index')});
+// Route.get('/tieng-anh-mam-non', ({ view }) => {return view.render('page.mamnon.index')});
 
 Route.group(() => {
+
+    Route.on('/').render('page.mamnon.index');
     Route.on('/tuoi-34').render('page.mamnon.tuoi34');
     Route.on('/tuoi-45').render('page.mamnon.tuoi45');
     Route.on('/tuoi-56').render('page.mamnon.tuoi56');
@@ -84,7 +81,11 @@ Route.group(() => {
     Route.on('/tuoi-56/chu-de-cang-hang-khong').render('page.mamnon.tuoi56.topic-canghangkhong');
     Route.on('/tuoi-56/chu-de-thoi-gian').render('page.mamnon.tuoi56.topic-thoigian');
 
-}).prefix('/tieng-anh-mam-non').middleware(['uproduct']);
+}).prefix('/tieng-anh-mam-non');
+
+Route.get('/enc.key',async ({ response }) => {
+  return response.download(Helpers.publicPath('key/enc.key'))
+}).middleware('uproduct');
 
 Route.group(() => {
     Route.post('auth/register', 'AuthController.register');
@@ -109,4 +110,4 @@ Route.group(() => {
 // Route.get('/register','UserController.registerIndex');
 // Route.post('/register', 'UserController.register');
 //
-// Route.post('/logout', 'UserController.logout');
+Route.post('/logout', 'UserController.logout');

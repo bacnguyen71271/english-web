@@ -1,5 +1,6 @@
 'use strict';
 const Database = use('Database');
+const Hash = use('Hash')
 const User = use('App/Models/User');
 const { validate } = use('Validator');
 
@@ -69,20 +70,47 @@ class AuthController {
         }
     }
 
-    async login ({ auth, session, request, response }) {
+    async login ({ session, request, response }) {
         const { email, password, remember } = request.all();
         let error = '';
 
         console.log(email + ':' + password);
         if(email && password){
             try{
-                await auth.logout();
-                await auth.attempt(email, password);
+                let user = await Database.table('users')
+                  .where('username',email)
+                  .first();
 
-                return response.send({
-                    code: 1,
-                    msg: "Thành công !",
-                })
+                if(user){
+                  const checkAuth = await Hash.verify(password, user.password)
+                  if(checkAuth){
+                    await Database.table('token_auths')
+                      .where('user_id', user.id)
+                      .update({
+                        'is_revoked' : 1,
+                        'updated_at': Database.fn.now()
+                      });
+                    const authCookie = request.cookie('auth_cookie');
+                    await Database.table('token_auths')
+                      .insert({
+                        'user_id' : user.id,
+                        'auth_token' : authCookie,
+                        'device_info': request.header('User-Agent'),
+                        'created_at': Database.fn.now(),
+                        'updated_at': Database.fn.now()
+                      });
+
+                    return response.send({
+                      code: 1,
+                      msg: "Thành công !",
+                    })
+                  }else{
+                    error = "Mật khẩu không đúng";
+                  }
+                }else{
+                  error = "Không tìm thấy tài khoản";
+                }
+
             }catch (e) {
                 if(e.message.indexOf('E_PASSWORD_MISMATCH') !== -1){
                     error = "Mật khẩu không đúng";
@@ -104,9 +132,15 @@ class AuthController {
         }
     }
 
-    async logout ({ auth, request, response }) {
+    async logout ({ request, response }) {
         try {
-            await auth.logout();
+
+          await Database.table('token_auths')
+            .where('user_id', request.auth.userid)
+            .update({
+              'is_revoked' : 1,
+              'updated_at': Database.fn.now()
+            });
             return response.redirect('/')
         }catch (e) {
             return response.redirect('/')
