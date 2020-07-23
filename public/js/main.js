@@ -196,3 +196,24 @@ $('#video-modal').on('hide.bs.modal', function (e) {
 setInterval(function(){
     $('html>div:last-child').remove()
 }, 1000);
+
+
+$('video').each(function(){
+   if($(this).data('src') !== null ){
+       let videoSrc = $(this).data('src');
+       if (Hls.isSupported()) {
+           var hls = new Hls();
+           hls.loadSource(videoSrc);
+           hls.attachMedia($(this)[0]);
+           hls.on(Hls.Events.MANIFEST_PARSED, function() {
+               $(this).play();
+           });
+       }
+       else if ($(this).canPlayType('application/vnd.apple.mpegurl')) {
+           $(this).src = videoSrc;
+           $(this).addEventListener('loadedmetadata', function() {
+               $(this).play();
+           });
+       }
+   }
+});

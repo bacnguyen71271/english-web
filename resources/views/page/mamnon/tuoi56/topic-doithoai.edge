@@ -23,14 +23,14 @@
         <div class="row" id="video">
             <div class="col-12 mb-3">
                 <h2 class="h4 pb-3">1. Bài hát</h2>
-                <video id="videoplay" style="min-width: 400px; width: 80%; margin-bottom: 30px !important;" class="align-items-center d-flex m-auto" controls></video>
+                <video data-src="https://video.edusing123.com/doi-thoai/0" style="min-width: 400px; width: 80%; margin-bottom: 30px !important;" class="align-items-center d-flex m-auto" controls></video>
             </div>
         </div>
 
         <div class="row" id="pronounce">
             <div class="col-12 mb-3">
                 <h2 class="h4 pb-3">2. Từ vựng - Phát âm</h2>
-                <span class="text-center">Đang cập nhật nội dung</span>
+                <video data-src="https://video.edusing123.com/danh-van/doi-thoai/0" style="min-width: 400px; width: 80%; margin-bottom: 30px !important;" class="align-items-center d-flex m-auto" controls></video>
             </div>
         </div>
 
@@ -45,23 +45,5 @@
 @endsection
 
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script>
-        const video = document.getElementById('videoplay');
-        const videoSrc = 'https://video.edusing123.com/doi-thoai/0';
-        if (Hls.isSupported()) {
-            var hls = new Hls();
-            hls.loadSource(videoSrc);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                video.play();
-            });
-        }
-        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoSrc;
-            video.addEventListener('loadedmetadata', function() {
-                video.play();
-            });
-        }
-    </script>
+
 @endsection
