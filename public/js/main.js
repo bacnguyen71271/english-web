@@ -5,6 +5,9 @@ let user = null;
 let panelUserInfo = $('.user-info');
 let csrf = null;
 
+let imageBookPath = '/books/';
+let imageBook = ["1", "8"][ Math.floor(Math.random()*2)];
+
 // $('.owl-carousel').owlCarousel({
 //     loop: true,
 //     margin: 10,
@@ -217,3 +220,16 @@ $('video').each(function(){
        }
    }
 });
+
+function fullscreenErrorHandler(){
+  if (self!=top) return "The frame is blocking full screen mode. Click on 'remove frame' button above and try to go full screen again."
+}
+
+function buildBook( elem, opt ){
+  var book= $.wowBook(elem);
+  if (!book) {
+    $(elem).wowBook( opt );
+    book = $.wowBook(elem);
+  }
+  book.showLightbox();
+}

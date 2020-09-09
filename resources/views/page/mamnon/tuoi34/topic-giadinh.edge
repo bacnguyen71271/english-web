@@ -37,12 +37,49 @@
         <div class="row" id="picture">
             <div class="col-12 mb-3">
                 <h2 class="h4 pb-3">3. Hình ảnh</h2>
-                <span class="text-center">Đang cập nhật nội dung</span>
+              <div class="row no-gutters pl-1">
+                <div class="col-sm-4 px-2 mb-grid-gutter">
+                  <div id="book1-trigger" class="d-block text-center text-decoration-none mr-1">
+                    <img class="d-block rounded mb-3" src="/images/courses/level1.jpg">
+                  </div>
+                </div>
+              </div>
+
             </div>
         </div>
     </section>
-
+    <div style='display: none'>
+      <div id="book1"></div>
+    </div>
 @endsection
 
 @section('script')
+  <script>
+
+    $("#book1-trigger").on("click",function(){
+      buildBook( '#book1', {
+        height   : 1056
+        ,width    : 1295*2
+        // ,maxWidth : 800
+        // ,maxHeight : 800
+        ,pageCount : 9
+        ,images : imageBookPath+"gia-dinh/image-@{{xxx}}.jpg"
+
+        ,lightbox : "#book1-trigger"
+        ,lightboxClass : "lightbox-images"+( imageBook=="1" ? "1" : "2" )
+        ,centeredWhenClosed : true
+        ,hardcovers : true
+        ,style: "wowbook-cs-white"
+        ,toolbar : "lastLeft, left, currentPage, right, lastRight, zoomin, zoomout, slideshow, fullscreen, thumbnails"
+        ,thumbnailsPosition : 'bottom'
+        ,thumbnailScale: 0.12
+        // ,thumbnailsSprite: imageBookPath+"co-the/image-001.jpg"
+        ,perspective: 4000
+        ,responsiveHandleWidth: 50
+
+        ,onFullscreenError: fullscreenErrorHandler
+      });
+    })
+
+  </script>
 @endsection
