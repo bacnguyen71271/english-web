@@ -1,0 +1,132 @@
+@layout('layout.mainlayout')
+@section('content')
+    <div class="bg-secondary py-2">
+        <div class="container py-2 py-lg-3">
+
+            <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+                <h1 class="h3 mb-0">Chủ đề nghề nghiệp</h1>
+            </div>
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb flex-lg-nowrap justify-content-center justify-content-lg-start">
+                        <li class="breadcrumb-item"><a class="text-nowrap" href="/"><i class="czi-home"></i>Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a class="text-nowrap" href="/giao-vien">Tiếng Anh Giáo viên</a></li>
+                        <li class="breadcrumb-item"><a class="text-nowrap" href="/giao-vien/tieng-anh-mam-non">Tiếng anh Mầm non</a></li>
+                        <li class="breadcrumb-item"><a class="text-nowrap" href="/giao-vien/tieng-anh-mam-non/tuoi-34">Tuổi 3-4</a></li>
+                        <li class="breadcrumb-item text-nowrap active" aria-current="page">Chủ đề nghề nghiệp</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section class="container pt-grid-gutter">
+      <div class="row" id="distribution">
+        <div class="col-12 mb-3">
+          <h2 class="h4 pb-3">1. Phân phối chương trình</h2>
+
+        </div>
+      </div>
+
+      <div class="row" id="plan">
+        <div class="col-12 mb-3">
+          <h2 class="h4 pb-3">2. Kế hoạch giảng dạy</h2>
+
+        </div>
+      </div>
+
+      <div class="row" id="rating">
+        <div class="col-12 mb-3">
+          <h2 class="h4 pb-3">3. Phiếu đánh giá</h2>
+
+        </div>
+      </div>
+
+      <div class="row" id="demo">
+        <div class="col-12 mb-3">
+          <h2 class="h4 pb-3">4. Video tham khảo</h2>
+
+        </div>
+      </div>
+        <div class="row" id="video">
+            <div class="col-12 mb-3">
+                <h2 class="h4 pb-3">5. Bài hát</h2>
+                <video data-src="https://video.edusing123.com/nghe-nghiep/0" style="min-width: 400px; width: 80%; margin-bottom: 30px !important;" class="align-items-center d-flex m-auto" controls></video>
+            </div>
+        </div>
+
+        <div class="row" id="pronounce">
+            <div class="col-12 mb-3">
+                <h2 class="h4 pb-3">6. Từ vựng - Phát âm</h2>
+                <video data-src="https://video.edusing123.com/danh-van/nghe-nghiep/0" style="min-width: 400px; width: 80%; margin-bottom: 30px !important;" class="align-items-center d-flex m-auto" controls></video>
+            </div>
+        </div>
+
+        <div class="row" id="picture">
+            <div class="col-12 mb-3">
+                <h2 class="h4 pb-3">7. Sách</h2>
+              <div class="row no-gutters pl-1">
+                <div class="col-sm-4 px-2 mb-grid-gutter">
+                  <div id="book1-trigger" class="d-block text-center text-decoration-none mr-1">
+                    <img class="d-block rounded mb-3" src="/images/courses/level3.jpg">
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+    <div style='display: none'>
+      <div id="book1"></div>
+    </div>
+@endsection
+
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        const video = document.getElementById('videoplay');
+        const videoSrc = 'https://video.edusing123.com/nghe-nghiep/0';
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play();
+            });
+        }
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play();
+            });
+        }
+    </script>
+
+    <script>
+
+      $("#book1-trigger").on("click",function(){
+        buildBook( '#book1', {
+          height   : 1056
+          ,width    : 1295*2
+          // ,maxWidth : 800
+          // ,maxHeight : 800
+          ,pageCount : 11
+          ,images : imageBookPath+"nghe-nghiep/image-@{{xxx}}.jpg"
+
+          ,lightbox : "#book1-trigger"
+          ,lightboxClass : "lightbox-images"+( imageBook=="1" ? "1" : "2" )
+          ,centeredWhenClosed : true
+          ,hardcovers : true
+          ,style: "wowbook-cs-white"
+          ,toolbar : "lastLeft, left, currentPage, right, lastRight, zoomin, zoomout, slideshow, fullscreen, thumbnails"
+          ,thumbnailsPosition : 'bottom'
+          ,thumbnailScale: 0.12
+          // ,thumbnailsSprite: imageBookPath+"co-the/image-001.jpg"
+          ,perspective: 4000
+          ,responsiveHandleWidth: 50
+
+          ,onFullscreenError: fullscreenErrorHandler
+        });
+      })
+
+    </script>
+@endsection

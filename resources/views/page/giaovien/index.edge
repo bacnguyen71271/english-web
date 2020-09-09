@@ -1,0 +1,45 @@
+@layout('layout.mainlayout')
+@section('content')
+    <div class="bg-secondary py-2">
+        <div class="container py-2 py-lg-3">
+
+            <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+                <h1 class="h3 mb-0">Tiếng Anh giáo viên</h1>
+            </div>
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb flex-lg-nowrap justify-content-center justify-content-lg-start">
+                        <li class="breadcrumb-item"><a class="text-nowrap" href="/"><i class="czi-home"></i>Trang chủ</a></li>
+                        <li class="breadcrumb-item text-nowrap active" aria-current="page">Tiếng Anh giáo viên</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section class="container pt-grid-gutter">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+                <div class="card border-0 box-shadow">
+                    <a href="giao-vien/tieng-anh-mam-non">
+                        <img class="card-img-top" src="/images/courses/level1.jpg" alt="Tiếng anh mầm non">
+                    </a>
+                    <div class="card-body">
+                        <a href="giao-vien/tieng-anh-mam-non"><h5>Tiếng Anh mầm non</h5></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+                <div class="card border-0 box-shadow">
+                    <a href="#">
+                        <img class="card-img-top" src="/images/courses/level2.jpg" alt="Tiếng anh phổ thông">
+                    </a>
+                    <div class="card-body">
+                        <a href="#"><h5>Tiếng Anh phổ thông</h5></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@endsection
