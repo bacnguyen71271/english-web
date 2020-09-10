@@ -27,7 +27,6 @@ class Admin {
           .where('token_auths.is_revoked',0)
           .first();
 
-        console.log(authCookie);
         if(authInfo){
           request.auth = {
             userid : authInfo.user_id,
