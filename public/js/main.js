@@ -233,3 +233,4 @@ function buildBook( elem, opt ){
   }
   book.showLightbox();
 }
+
