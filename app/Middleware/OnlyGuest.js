@@ -11,7 +11,9 @@ class OnlyGuest {
    */
   async handle ({ request, response, auth }, next) {
     // call next to advance the request
-    if(auth.user){
+    // console.log();
+    if(request.auth){
+
       return response.redirect('/')
     }
     await next()

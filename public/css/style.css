@@ -2115,4 +2115,10 @@ ul.navbar-nav a {
   width: 100%;
 }
 
+.wowbook-page {
+  user-select: none;
+}
 
+video {
+  box-shadow: 0px 0px 60px -15px #0a0a0a26;
+}

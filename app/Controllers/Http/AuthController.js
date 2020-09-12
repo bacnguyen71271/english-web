@@ -74,7 +74,6 @@ class AuthController {
         const { email, password, remember } = request.all();
         let error = '';
 
-        console.log(email + ':' + password);
         if(email && password){
             try{
                 let user = await Database.table('users')
@@ -103,6 +102,7 @@ class AuthController {
                     return response.send({
                       code: 1,
                       msg: "Thành công !",
+                      referer: request.headers().referer ? request.headers().referer : '/'
                     })
                   }else{
                     error = "Mật khẩu không đúng";

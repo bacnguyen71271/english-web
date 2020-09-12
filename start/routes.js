@@ -41,6 +41,7 @@ Route.group(() => {
 
 
 // Route.get('/tieng-anh-mam-non', ({ view }) => {return view.render('page.mamnon.index')});
+Route.on('/tieng-anh-chau-au').render('page.tieng-anh-chau-au.index');
 
 Route.group(() => {
 

@@ -6,6 +6,7 @@ let panelUserInfo = $('.user-info');
 let csrf = null;
 
 let imageBookPath = '/books/';
+let pdfBookPath = '/document/';
 let imageBook = ["1", "8"][ Math.floor(Math.random()*2)];
 
 // $('.owl-carousel').owlCarousel({
@@ -233,4 +234,3 @@ function buildBook( elem, opt ){
   }
   book.showLightbox();
 }
-
