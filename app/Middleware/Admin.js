@@ -12,7 +12,7 @@ class Admin {
   async handle({request, response, auth }, next) {
 
     if( request.auth) {
-
+      await next()
     } else {
       return response.redirect('/dang-nhap')
     }
