@@ -54,8 +54,8 @@ class ProductController {
     const { productid, amount } = request.all();
 
     const rules = {
-      email: 'required',
-      password: 'required'
+      productid: 'required',
+      amount: 'required'
     }
 
     const validation = await validate(request.all(), rules)
