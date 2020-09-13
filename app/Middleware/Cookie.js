@@ -36,7 +36,7 @@ class Admin {
             phone: authInfo.phone,
           }
         }else{
-          request.auth = null;
+          c= null;
         }
 
 
