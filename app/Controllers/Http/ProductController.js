@@ -54,7 +54,7 @@ class ProductController {
     const { productid, amount } = request.all();
 
     const rules = {
-      email: 'required|email|unique:users,email',
+      email: 'required',
       password: 'required'
     }
 
