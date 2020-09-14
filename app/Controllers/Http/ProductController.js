@@ -62,7 +62,7 @@ class ProductController {
 
     if( !validation.fails() ) {
       let code_array = [];
-      for (let i = 0; i < amount; i++) {
+      for (let i = 0; i < parseInt(amount); i++) {
         let generated = false;
         do {
           let code = code_generator.generate({
@@ -88,19 +88,17 @@ class ProductController {
               "created_at":Database.fn.now(),
               "updated_at":Database.fn.now(),
             });
-
             code_array.push(code);
-
-            return response.send({
-              code: 1,
-              msg: '',
-              data: code_array
-            });
           }
         } while (!generated);
 
       }
 
+      return response.send({
+        code: 1,
+        msg: '',
+        data: code_array
+      });
     } else {
       return response.send({
         code: 0,
