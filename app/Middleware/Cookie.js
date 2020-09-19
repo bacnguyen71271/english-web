@@ -4,6 +4,8 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 const uuid = require('uuid');
 const Database = use('Database');
+const Env = use('Env');
+
 class Admin {
   /**
    * @param {object} ctx
@@ -11,6 +13,7 @@ class Admin {
    * @param {Function} next
    */
   async handle({request, response }, next) {
+    const domain = Env.get('DOMAIN', 'http://127.0.0.1:3333');
     try {
       const authCookie = request.cookie('auth_cookie');
       if(!authCookie){
@@ -42,16 +45,20 @@ class Admin {
 
         let url = request.url();
         let product = -1;
-        if(url.indexOf('tieng-anh-mam-non/tuoi-34') > 0){
+        if(url.indexOf(domain + 'tieng-anh-mam-non/tuoi-34') > 0){
           product = 1;
         }
 
-        if(url.indexOf('tieng-anh-mam-non/tuoi-45') > 0){
+        if(url.indexOf(domain + 'tieng-anh-mam-non/tuoi-45') > 0){
           product = 2;
         }
 
         if(url.indexOf('tieng-anh-mam-non/tuoi-56') > 0){
           product = 3;
+        }
+
+        if(url.indexOf('giao-vien/tieng-anh-mam-non') > 0){
+          product = 4;
         }
 
         if(product == -1){
