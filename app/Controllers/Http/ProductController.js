@@ -1,5 +1,6 @@
 'use strict';
 const Database = use('Database');
+const { validate } = use('Validator')
 
 const code_generator = use('voucher-code-generator');
 
@@ -48,6 +49,64 @@ class ProductController {
             });
         }
     }
+
+  async createCode({ request, auth, response }){
+    const { productid, amount } = request.all();
+
+    const rules = {
+      productid: 'required',
+      amount: 'required'
+    }
+
+    const validation = await validate(request.all(), rules)
+
+    if( !validation.fails() ) {
+      let code_array = [];
+      for (let i = 0; i < parseInt(amount); i++) {
+        let generated = false;
+        do {
+          let code = code_generator.generate({
+            // length: 8,
+            count: 1,
+            charset: "0123456789",
+            pattern: "###-####-###",
+          });
+
+          code = code[0].toUpperCase();
+
+          const codeCheck = await Database.table('product_codes')
+            .where('code', code)
+            .first();
+
+          if( !codeCheck ){
+            generated = true;
+
+            await Database.table('product_codes').insert({
+              "code": code,
+              "product_id": productid,
+              "status": 1,
+              "created_at":Database.fn.now(),
+              "updated_at":Database.fn.now(),
+            });
+            code_array.push(code);
+          }
+        } while (!generated);
+
+      }
+
+      return response.send({
+        code: 1,
+        msg: '',
+        data: code_array
+      });
+    } else {
+      return response.send({
+        code: 0,
+        msg: validation.messages(),
+        data: ''
+      });
+    }
+  }
 
 
     async applyCodeProduct({ request, auth, response }){

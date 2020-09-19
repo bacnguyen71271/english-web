@@ -10,12 +10,18 @@ class Admin {
    * @param {Function} next
    */
   async handle({request, response, auth }, next) {
-    try {
-      await auth.check();
+
+    if( request.auth) {
       await next()
-    } catch (error) {
+    } else {
       return response.redirect('/dang-nhap')
     }
+    // try {
+    //   await auth.check();
+    //   await next()
+    // } catch (error) {
+    //
+    // }
 
     // call next to advance the request
     // await next()
