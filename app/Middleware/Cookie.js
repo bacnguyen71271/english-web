@@ -43,21 +43,21 @@ class Admin {
         }
 
 
-        let url = request.url();
+        let url = domain + request.url();
         let product = -1;
-        if(url.indexOf(domain + 'tieng-anh-mam-non/tuoi-34') > 0){
+        if(url.indexOf(domain + '/tieng-anh-mam-non/tuoi-34') > 0){
           product = 1;
         }
 
-        if(url.indexOf(domain + 'tieng-anh-mam-non/tuoi-45') > 0){
+        if(url.indexOf(domain + '/tieng-anh-mam-non/tuoi-45') > 0){
           product = 2;
         }
 
-        if(url.indexOf(domain + 'tieng-anh-mam-non/tuoi-56') > 0){
+        if(url.indexOf(domain + '/tieng-anh-mam-non/tuoi-56') > 0){
           product = 3;
         }
 
-        if(url.indexOf(domain + 'giao-vien/tieng-anh-mam-non') > 0){
+        if(url.indexOf(domain + '/giao-vien/tieng-anh-mam-non') > 0){
           product = 4;
         }
 
