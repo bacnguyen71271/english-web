@@ -284,14 +284,12 @@
       type : "get",
       dateType:"json",
       success : function (result){
-        if(result.code) {
-          if(loginStatus != -1){
-            if (loginStatus != result.code) {
-              location.reload();
-            }
-          }else {
-            loginStatus = result.code
+        if(loginStatus != -1){
+          if (loginStatus != result.code) {
+            location.reload();
           }
+        }else {
+          loginStatus = result.code
         }
       }
     });
