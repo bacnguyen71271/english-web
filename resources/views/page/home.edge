@@ -1,43 +1,58 @@
 @layout('layout.mainlayout')
 @section('content')
+
+  <style>
+    .gallery-item::before {
+      opacity: 1;
+      background-color: rgba(43, 52, 69, 0.3);
+    }
+    .gallery-item::after, .gallery-item .gallery-item-caption{
+      opacity: 1;
+    }
+
+    .gallery-item::after{
+      transform: scale(1);
+    }
+  </style>
   <section class="cz-carousel cz-controls-lg">
     <div class="tns-outer" id="tns2-ow">
-      <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0">
-        <button type="button" data-controls="prev" tabindex="-1" aria-controls="tns2"><i class="czi-arrow-left"></i>
-        </button>
-        <button type="button" data-controls="next" tabindex="-1" aria-controls="tns2"><i class="czi-arrow-right"></i>
-        </button>
-      </div>
-      <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">4</span>
-        of 3
-      </div>
-      <div class="tns-inner" id="tns2-iw">
-        <div class="cz-carousel-inner tns-slider tns-gallery tns-subpixel tns-calc tns-horizontal"
-             data-carousel-options="{&quot;mode&quot;: &quot;gallery&quot;, &quot;responsive&quot;: {&quot;0&quot;:{&quot;nav&quot;:true, &quot;controls&quot;: false},&quot;992&quot;:{&quot;nav&quot;:false, &quot;controls&quot;: true}}}"
-             id="tns2">
-          <div class="px-lg-5 tns-item tns-normal" style="background-color: rgb(58, 175, 210); " id="tns2-item2"
-               aria-hidden="true" tabindex="-1">
-            <div class="d-lg-flex justify-content-between align-items-center pl-lg-4"><img
-                class="d-block order-lg-2 mr-lg-n5 flex-shrink-0" src="images/home/hero-slider/03.png"
-                alt="Men Accessories">
-              <div class="position-relative mx-auto mr-lg-n5 py-5 px-4 mb-lg-5 order-lg-1"
-                   style="max-width: 42rem; z-index: 10; margin-left: 0px !important;">
-                <div class="pb-lg-5 mb-lg-5 text-center text-lg-left text-lg-nowrap">
+      <img src="images/theme/banner-edusing.jpg"/>
+{{--      <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0">--}}
+{{--        <button type="button" data-controls="prev" tabindex="-1" aria-controls="tns2"><i class="czi-arrow-left"></i>--}}
+{{--        </button>--}}
+{{--        <button type="button" data-controls="next" tabindex="-1" aria-controls="tns2"><i class="czi-arrow-right"></i>--}}
+{{--        </button>--}}
+{{--      </div>--}}
+{{--      <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">4</span>--}}
+{{--        of 3--}}
+{{--      </div>--}}
+{{--      <div class="tns-inner" id="tns2-iw">--}}
+{{--        <div class="cz-carousel-inner tns-slider tns-gallery tns-subpixel tns-calc tns-horizontal"--}}
+{{--             data-carousel-options="{&quot;mode&quot;: &quot;gallery&quot;, &quot;responsive&quot;: {&quot;0&quot;:{&quot;nav&quot;:true, &quot;controls&quot;: false},&quot;992&quot;:{&quot;nav&quot;:false, &quot;controls&quot;: true}}}"--}}
+{{--             id="tns2">--}}
+{{--          <div class="px-lg-5 tns-item tns-normal" style="background-color: rgb(58, 175, 210); " id="tns2-item2"--}}
+{{--               aria-hidden="true" tabindex="-1">--}}
+{{--            <div class="d-lg-flex justify-content-between align-items-center pl-lg-4"><img--}}
+{{--                class="d-block order-lg-2 mr-lg-n5 flex-shrink-0" src="images/home/hero-slider/03.png"--}}
+{{--                alt="Men Accessories">--}}
+{{--              <div class="position-relative mx-auto mr-lg-n5 py-5 px-4 mb-lg-5 order-lg-1"--}}
+{{--                   style="max-width: 42rem; z-index: 10; margin-left: 0px !important;">--}}
+{{--                <div class="pb-lg-5 mb-lg-5 text-center text-lg-left text-lg-nowrap">--}}
 
-                  <h1 style="width: fit-content;" class="text-light display-4 from-top delay-1">ESING<span style="font-size: 1.8rem;">-unso</span><span style="text-align: center; display: flow-root; font-size: 1.4rem;">Nghe là nhớ !</span></h1>
+{{--                  <h1 style="width: fit-content;" class="text-light display-4 from-top delay-1">ESING<span style="font-size: 1.8rem;">-unso</span><span style="text-align: center; display: flow-root; font-size: 1.4rem;">Nghe là nhớ !</span></h1>--}}
 
-                  <h2 class="text-light font-weight-light pb-1 from-top">Giúp trẻ ghi nhớ 30 từ vựng tiếng anh mỗi ngày</h2>
-                  <a class="btn btn-primary scale-up delay-4" href="/">Xem ngay<i
-                      class="czi-arrow-right ml-2 mr-n1"></i></a>
-                  <div class="row">
-                    <div class="col-4"></div>
-                    <div class="col-4"></div>
-                    <div class="col-4"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+{{--                  <h2 class="text-light font-weight-light pb-1 from-top">Giúp trẻ ghi nhớ 30 từ vựng tiếng anh mỗi ngày</h2>--}}
+{{--                  <a class="btn btn-primary scale-up delay-4" href="/">Xem ngay<i--}}
+{{--                      class="czi-arrow-right ml-2 mr-n1"></i></a>--}}
+{{--                  <div class="row">--}}
+{{--                    <div class="col-4"></div>--}}
+{{--                    <div class="col-4"></div>--}}
+{{--                    <div class="col-4"></div>--}}
+{{--                  </div>--}}
+{{--                </div>--}}
+{{--              </div>--}}
+{{--            </div>--}}
+{{--          </div>--}}
 {{--          <div class="px-lg-5 tns-item tns-slide-active tns-fadeIn"--}}
 {{--               style="background-color: rgb(58, 175, 210); left: 0%;">--}}
 {{--            <div class="d-lg-flex justify-content-between align-items-center pl-lg-4"><img--}}
@@ -54,16 +69,16 @@
 {{--              </div>--}}
 {{--            </div>--}}
 {{--          </div>--}}
-        </div>
-      </div>
-      <div class="tns-nav" aria-label="Carousel Pagination" style="display: none;">
-        <button type="button" data-nav="0" aria-controls="tns2" style="display:none"
-                aria-label="Carousel Page 1 (Current Slide)" class="tns-nav-active"></button>
-        <button type="button" data-nav="1" tabindex="-1" aria-controls="tns2" style="display:none"
-                aria-label="Carousel Page 2"></button>
-        <button type="button" data-nav="2" tabindex="-1" aria-controls="tns2" style="display:none"
-                aria-label="Carousel Page 3"></button>
-      </div>
+{{--        </div>--}}
+{{--      </div>--}}
+{{--      <div class="tns-nav" aria-label="Carousel Pagination" style="display: none;">--}}
+{{--        <button type="button" data-nav="0" aria-controls="tns2" style="display:none"--}}
+{{--                aria-label="Carousel Page 1 (Current Slide)" class="tns-nav-active"></button>--}}
+{{--        <button type="button" data-nav="1" tabindex="-1" aria-controls="tns2" style="display:none"--}}
+{{--                aria-label="Carousel Page 2"></button>--}}
+{{--        <button type="button" data-nav="2" tabindex="-1" aria-controls="tns2" style="display:none"--}}
+{{--                aria-label="Carousel Page 3"></button>--}}
+{{--      </div>--}}
     </div>
   </section>
   <div class="modal fade" id="video-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -93,17 +108,17 @@
         <div class="card border-0 box-shadow-lg">
           <div class="card-body px-3 pt-grid-gutter pb-0">
             <div class="row no-gutters pl-1">
-              <div class="col-sm-4 px-2 mb-grid-gutter">
+              <div class="col-sm-4 px-2">
                 <a class="gallery-item rounded-lg mb-grid-gutter video-btn" data-toggle="modal" data-src="/video/gia-dinh.mp4" data-target="#video-modal" href="javascript:void(0)" data-sub-html="<h6 class=&quot;font-size-sm text-light&quot;></h6>"><img src="images/theme/chu-de-gia-dinh.jpg" alt="Gallery image">
                   <span class="gallery-item-caption">Chủ đề gia đình</span>
                 </a>
               </div>
-              <div class="col-sm-4 px-2 mb-grid-gutter">
+              <div class="col-sm-4 px-2">
                 <a class="gallery-item rounded-lg mb-grid-gutter video-btn" data-toggle="modal" data-src="/video/truong-hoc.mp4" data-target="#video-modal" href="javascript:void(0)" data-sub-html="<h6 class=&quot;font-size-sm text-light&quot;></h6>"><img src="images/theme/chu-de-truong-hoc.jpg" alt="Gallery image">
                   <span class="gallery-item-caption">Chủ đề trường học</span>
                 </a>
               </div>
-              <div class="col-sm-4 px-2 mb-grid-gutter">
+              <div class="col-sm-4 px-2">
                 <a class="gallery-item rounded-lg mb-grid-gutter video-btn" data-toggle="modal" data-src="/video/san-bay.mp4" data-target="#video-modal" href="javascript:void(0)" data-sub-html="<h6 class=&quot;font-size-sm text-light&quot;></h6>"><img src="images/theme/chu-de-san-bay.jpg" alt="Gallery image">
                   <span class="gallery-item-caption">Chủ đề sân bay</span>
                 </a>

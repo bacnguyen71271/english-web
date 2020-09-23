@@ -1,0 +1,44 @@
+@layout('layout.mainlayout')
+@section('content')
+    <div class="bg-secondary py-2">
+        <div class="container py-2 py-lg-3">
+            <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+                <h1 class="h3 mb-0">Video tham khảo</h1>
+            </div>
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb flex-lg-nowrap justify-content-center justify-content-lg-start">
+                      <li class="breadcrumb-item"><a class="text-nowrap" href="/"><i class="czi-home"></i>Trang chủ</a></li>
+                      <li class="breadcrumb-item"><a class="text-nowrap" href="/giao-vien">Tiếng Anh Giáo viên</a></li>
+                      <li class="breadcrumb-item"><a class="text-nowrap" href="/giao-vien/tieng-anh-mam-non">Tiếng Anh Mầm non</a></li>
+                      <li class="breadcrumb-item text-nowrap active" aria-current="page">Video tham khảo</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section class="container pt-grid-gutter" style="min-height: 600px">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="/giao-vien/tieng-anh-mam-non/video-tham-khao/co-the">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Chủ đề cơ thể</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="/giao-vien/tieng-anh-mam-non/video-tham-khao/hoat-dong">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Chủ đề hoạt động</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+@endsection

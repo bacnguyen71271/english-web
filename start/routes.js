@@ -29,6 +29,8 @@ Route.get('/dang-nhap', ({ view }) => {return view.render('page.dang-nhap')}).mi
 Route.get('/dang-ky', ({ view }) => {return view.render('page.dang-ky')}).middleware('only_guest');
 Route.get('/dang-xuat', 'AuthController.logout');//.middleware('auth');
 
+Route.get('/check-login', 'AuthController.checkLogin');
+
 Route.post('/login', 'AuthController.login');
 
 Route.group(() => {
@@ -89,6 +91,12 @@ Route.on('/giao-vien').render('page.giaovien.index');
 Route.group(() => {
 
   Route.on('/').render('page.giaovien.mamnon.index');
+
+  Route.on('/tai-lieu-tham-khao').render('page.giaovien.mamnon.tailieuthamkhao.index');
+  Route.on('/video-tham-khao').render('page.giaovien.mamnon.videothamkhao.index');
+  Route.on('/video-tham-khao/co-the').render('page.giaovien.mamnon.videothamkhao.co-the');
+  Route.on('/video-tham-khao/hoat-dong').render('page.giaovien.mamnon.videothamkhao.hoat-dong');
+
   Route.on('/tuoi-34').render('page.giaovien.mamnon.tuoi34');
   Route.on('/tuoi-45').render('page.giaovien.mamnon.tuoi45');
   Route.on('/tuoi-56').render('page.giaovien.mamnon.tuoi56');

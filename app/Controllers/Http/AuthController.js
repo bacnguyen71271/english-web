@@ -147,6 +147,24 @@ class AuthController {
         }
     }
 
+  async checkLogin ({ request, response }) {
+    try {
+      if( request.auth) {
+        return response.send({
+          code: 1,
+        })
+      } else {
+        return response.send({
+          code: 0,
+        })
+      }
+    }catch (e) {
+      return response.send({
+        code: 0,
+      })
+    }
+  }
+
     show ({ auth, params }) {
         if (auth.user.id !== Number(params.id)) {
             return "You cannot see someone else's profile"
