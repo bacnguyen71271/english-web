@@ -22,7 +22,7 @@ class AuthController {
                     }
                 }
             }
-        }else{
+        } else {
             error = 'Hãy nhập những mục bắt buộc';
         }
 
@@ -31,17 +31,17 @@ class AuthController {
             // .where('userid','')
             .first();
 
-        if(checkCode) {
+        if (checkCode) {
             if(checkCode.userid !== '' && checkCode.userid !== null){
                 error = 'Mã sản phẩm đã được sử dụng';
             }
-        }else {
+        } else {
             error = 'Mã sản phẩm không tồn tại';
         }
 
-        if(error === ''){
+        if (error.length == 0) {
             let user = await User.create({ username, password});
-            await auth.attempt(username, password);
+            // await auth.attempt(username, password);
             await Database.table('product_codes')
                 .where('code', productcode)
                 .update({
@@ -71,13 +71,13 @@ class AuthController {
     }
 
     async login ({ session, request, response }) {
-        const { email, password, remember } = request.all();
+        const { username, password, remember } = request.all();
         let error = '';
 
-        if(email && password){
+        if(username && password){
             try{
                 let user = await Database.table('users')
-                  .where('username',email)
+                  .where('username',username)
                   .first();
 
                 if(user){

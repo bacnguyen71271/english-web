@@ -155,7 +155,28 @@ $('#signin').submit(function (e) {
                 $('.signin-notification').addClass('alert alert-danger');
                 $('.signin-notification').html(res.msg);
             } else {
-                location.reload();
+                $('.signin-notification').addClass('alert alert-success');
+                $('.signin-notification').html('Đăng ký thành công');
+
+                $.ajax({
+                  url: '/api/v1/auth/register',
+                  type: 'POST',
+                  dataType: 'json',
+                  data: self.serialize(),
+                  success: function (res) {
+                      $('.signup-notification').removeClass('alert alert-danger');
+                      $('.signup-notification').html('');
+                      if (res.code === 0) {
+                          $('.signup-notification').addClass('alert alert-danger');
+                          $('.signup-notification').html(res.msg);
+                      } else {
+                          location.replace('/');
+                      }
+                  }
+              })
+                setTimeout(function () {
+                  location.reload();
+                }, 5000)
             }
         }
     })

@@ -69,9 +69,7 @@ class Admin {
           product = 6;
         }
 
-        if(product == -1){
-
-        } else {
+        if(product != -1){
           if (!request.auth) {
             return response.redirect('/dang-nhap')
           }
@@ -86,18 +84,14 @@ class Admin {
               .where('product_id', product);
           }
 
-          if (checkUser.length > 0) {
-            await next()
-          } else {
+          if (checkUser.length == 0) {
             return response.redirect('/')
           }
         }
-
-
       }
     } catch (error) {
+      console.log(error);
     }
-
     // call next to advance the request
     await next()
   }
