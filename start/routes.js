@@ -153,6 +153,8 @@ Route.group(() => {
     Route.post('apply-code', 'ProductController.applyCodeProduct').middleware('admin');
 
     Route.get('create-code', 'ProductController.createCode').middleware('admin');
+
+    Route.get('run', 'ProductController.run').middleware('admin');
 }).prefix('api/v1');
 
 //

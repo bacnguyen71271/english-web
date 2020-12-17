@@ -43,45 +43,31 @@ class Admin {
         }
 
 
-        let url = domain + request.url();
-        let product = -1;
-        if(url.indexOf(domain + '/tieng-anh-mam-non/tuoi-34') != -1){
-          product = 1;
-        }
+        let url = request.url().replace(domain,'');
+        let product = await Database.table('product')
+        .where('product_link', url)
+        .first();
 
-        if(url.indexOf(domain + '/tieng-anh-mam-non/tuoi-45') != -1){
-          product = 2;
-        }
-
-        if(url.indexOf(domain + '/tieng-anh-mam-non/tuoi-56') != -1){
-          product = 3;
-        }
-
-        if(url.indexOf(domain + '/giao-vien/tieng-anh-mam-non/tuoi-34') != -1){
-          product = 4;
-        }
-
-        if(url.indexOf(domain + '/giao-vien/tieng-anh-mam-non/tuoi-45') != -1){
-          product = 5;
-        }
-
-        if(url.indexOf(domain + '/giao-vien/tieng-anh-mam-non/tuoi-56') != -1){
-          product = 6;
-        }
-
-        if(product != -1){
+        if(product){
           if (!request.auth) {
             return response.redirect('/dang-nhap')
           }
 
           let checkUser;
           if (url.indexOf('enc.key') !== -1) {
-            checkUser = await Database.table('product_codes')
+            checkUser = await Database.table('codes')
               .where('userid', request.auth.userid);
           } else {
-            checkUser = await Database.table('product_codes')
-              .where('userid', request.auth.userid)
-              .where('product_id', product);
+            checkUser = Database.table('product_code')
+            .join('codes', 'product_code.code_id', 'codes.id')
+            .join('product', 'product.id', 'product_code.product_id')
+            .where('product_code.user_id', request.auth.userid)
+            .where('product.id', product.id)
+            .where('product_code.exp_date', '>', this.getDateTimeBefore(0));
+
+            // console.log(checkUser.toSQL());
+
+            checkUser = await checkUser;
           }
 
           if (checkUser.length == 0) {
@@ -91,9 +77,24 @@ class Admin {
       }
     } catch (error) {
       console.log(error);
+      return response.redirect('/')
     }
     // call next to advance the request
     await next()
+  }
+
+  getDateTimeBefore(beforeDay) {
+    let date = new Date();
+    date.setDate(date.getDate() + beforeDay);
+    let year = date.getFullYear();
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+
+    let fullDateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    return fullDateTime;
   }
 }
 
