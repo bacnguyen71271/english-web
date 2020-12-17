@@ -129,8 +129,27 @@ $('#signup').submit(function (e) {
                 $('.signup-notification').addClass('alert alert-danger');
                 $('.signup-notification').html(res.msg);
             } else {
-                location.replace('/');
+
+
+                $('.signin-notification').addClass('alert alert-success');
+                $('.signin-notification').html('Đăng ký thành công');
+
+                $.ajax({
+                  url: '/api/v1/auth/register',
+                  type: 'POST',
+                  dataType: 'json',
+                  data: self.serialize(),
+                  success: function (res) {
+
+                  }
+                })
+
+                setTimeout(function () {
+                  location.reload();
+                }, 5000)
             }
+
+
         }
     })
 });
@@ -155,21 +174,7 @@ $('#signin').submit(function (e) {
                 $('.signin-notification').addClass('alert alert-danger');
                 $('.signin-notification').html(res.msg);
             } else {
-                $('.signin-notification').addClass('alert alert-success');
-                $('.signin-notification').html('Đăng ký thành công');
-
-                $.ajax({
-                  url: '/api/v1/auth/register',
-                  type: 'POST',
-                  dataType: 'json',
-                  data: self.serialize(),
-                  success: function (res) {
-
-                  }
-              })
-                setTimeout(function () {
-                  location.reload();
-                }, 5000)
+                location.replace('/');
             }
         }
     })
