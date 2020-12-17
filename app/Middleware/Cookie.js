@@ -57,8 +57,16 @@ class Admin {
           product = 3;
         }
 
-        if(url.indexOf(domain + '/giao-vien/tieng-anh-mam-non') != -1){
+        if(url.indexOf(domain + '/giao-vien/tieng-anh-mam-non/tuoi-34') != -1){
           product = 4;
+        }
+
+        if(url.indexOf(domain + '/giao-vien/tieng-anh-mam-non/tuoi-45') != -1){
+          product = 5;
+        }
+
+        if(url.indexOf(domain + '/giao-vien/tieng-anh-mam-non/tuoi-56') != -1){
+          product = 6;
         }
 
         if(product == -1){

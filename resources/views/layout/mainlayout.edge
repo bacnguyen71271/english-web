@@ -280,7 +280,7 @@
   var loginStatus = -1;
   setInterval(function (){
     $.ajax({
-      url : "https://edusing123.com/check-login",
+      url : "{{ APP_URL() }}check-login",
       type : "get",
       dateType:"json",
       success : function (result){

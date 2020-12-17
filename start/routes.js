@@ -93,6 +93,9 @@ Route.group(() => {
   Route.on('/').render('page.giaovien.mamnon.index');
 
   Route.on('/tai-lieu-tham-khao').render('page.giaovien.mamnon.tailieuthamkhao.index');
+
+  Route.on('/tai-lieu-tham-khao/sach-giao-vien').render('page.giaovien.mamnon.tailieuthamkhao.sachgiaovien');
+
   Route.on('/video-tham-khao').render('page.giaovien.mamnon.videothamkhao.index');
   Route.on('/video-tham-khao/co-the').render('page.giaovien.mamnon.videothamkhao.co-the');
   Route.on('/video-tham-khao/hoat-dong').render('page.giaovien.mamnon.videothamkhao.hoat-dong');
