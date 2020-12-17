@@ -164,14 +164,7 @@ $('#signin').submit(function (e) {
                   dataType: 'json',
                   data: self.serialize(),
                   success: function (res) {
-                      $('.signup-notification').removeClass('alert alert-danger');
-                      $('.signup-notification').html('');
-                      if (res.code === 0) {
-                          $('.signup-notification').addClass('alert alert-danger');
-                          $('.signup-notification').html(res.msg);
-                      } else {
-                          location.replace('/');
-                      }
+
                   }
               })
                 setTimeout(function () {
