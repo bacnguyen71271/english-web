@@ -104,6 +104,9 @@ Route.group(() => {
   Route.on('/tuoi-45').render('page.giaovien.mamnon.tuoi45');
   Route.on('/tuoi-56').render('page.giaovien.mamnon.tuoi56');
 
+  Route.on('/tuoi-34/video-tham-khao').render('page.giaovien.mamnon.tuoi34.videothamkhao.index');
+  Route.on('/tuoi-34/tai-lieu-tham-khao').render('page.giaovien.mamnon.tuoi34.tailieuthamkhao.index');
+
   Route.on('/tuoi-34/chu-de-co-the').render('page.giaovien.mamnon.tuoi34.cothe');
   Route.on('/tuoi-34/chu-de-trang-phuc').render('page.giaovien.mamnon.tuoi34.topic-trangphuc');
   Route.on('/tuoi-34/chu-de-mau-sac').render('page.giaovien.mamnon.tuoi34.topic-mausac');
@@ -115,6 +118,9 @@ Route.group(() => {
   Route.on('/tuoi-34/chu-de-phong-khach').render('page.giaovien.mamnon.tuoi34.topic-phongkhach');
 
 
+  Route.on('/tuoi-45/video-tham-khao').render('page.giaovien.mamnon.tuoi45.videothamkhao.index');
+  Route.on('/tuoi-45/tai-lieu-tham-khao').render('page.giaovien.mamnon.tuoi45.tailieuthamkhao.index');
+
   Route.on('/tuoi-45/chu-de-cong-vien').render('page.giaovien.mamnon.tuoi45.topic-congvien');
   Route.on('/tuoi-45/chu-de-duong-pho').render('page.giaovien.mamnon.tuoi45.topic-duongpho');
   Route.on('/tuoi-45/chu-de-nha-va-vuon').render('page.giaovien.mamnon.tuoi45.topic-nhavuon');
@@ -125,6 +131,9 @@ Route.group(() => {
   Route.on('/tuoi-45/chu-de-tro-choi').render('page.giaovien.mamnon.tuoi45.topic-trochoi');
   Route.on('/tuoi-45/chu-de-truong-hoc').render('page.giaovien.mamnon.tuoi45.topic-truonghoc');
 
+
+  Route.on('/tuoi-56/video-tham-khao').render('page.giaovien.mamnon.tuoi56.videothamkhao.index');
+  Route.on('/tuoi-56/tai-lieu-tham-khao').render('page.giaovien.mamnon.tuoi56.tailieuthamkhao.index');
 
   Route.on('/tuoi-56/chu-de-doi-thoai').render('page.giaovien.mamnon.tuoi56.topic-doithoai');
   Route.on('/tuoi-56/chu-de-nghe-nghiep').render('page.giaovien.mamnon.tuoi56.topic-nghenghiep');

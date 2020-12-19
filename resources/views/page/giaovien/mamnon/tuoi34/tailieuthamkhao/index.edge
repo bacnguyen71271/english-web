@@ -1,0 +1,205 @@
+@layout('layout.mainlayout')
+@section('content')
+    <div class="bg-secondary py-2">
+        <div class="container py-2 py-lg-3">
+
+            <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+                <h1 class="h3 mb-0">Tài liệu tham khảo</h1>
+            </div>
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb flex-lg-nowrap justify-content-center justify-content-lg-start">
+                      <li class="breadcrumb-item"><a class="text-nowrap" href="/"><i class="czi-home"></i>Trang chủ</a></li>
+                      <li class="breadcrumb-item"><a class="text-nowrap" href="/giao-vien">Tiếng Anh Giáo viên</a></li>
+                      <li class="breadcrumb-item"><a class="text-nowrap" href="/giao-vien/tieng-anh-mam-non">Tiếng Anh Mầm non</a></li>
+                      <li class="breadcrumb-item"><a class="text-nowrap" href="/giao-vien/tieng-anh-mam-non/tuoi-34">Tuổi 3-4</a></li>
+                      <li class="breadcrumb-item text-nowrap active" aria-current="page">Tài liệu tham khảo</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section class="container pt-grid-gutter">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="#">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Tháng 9</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="#">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Tháng 10</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="#">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Tháng 11</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="#">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Tháng 12</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="#">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Tháng 1</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="#">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Tháng 2</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="#">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Tháng 3</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="#">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Tháng 4</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <a href="#">
+            <div class="card border-0 box-shadow">
+              <div class="card-body">
+                <h5>Tháng 5</h5>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <div id="book1-trigger" class="card border-0 box-shadow">
+            <div class="card-body">
+              <h5>Tài liệu luyện thi A1</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <div id="book2-trigger" class="card border-0 box-shadow">
+            <div class="card-body">
+              <h5>Tài liệu luyện thi A2</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+          <div id="book3-trigger" class="card border-0 box-shadow">
+            <div class="card-body">
+              <h5>Sách giáo viên</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div style='display: none'>
+      <div id="book2"></div>
+      <div id="book1"></div>
+      <div id="book3"></div>
+    </div>
+@endsection
+
+
+@section('script')
+  <script>
+
+    $("#book3-trigger").on("click",function(){
+      buildBook( '#book3', {
+        height   : 1024
+        ,width    : 725*2
+        ,pageNumbers: false
+        ,pdf: pdfBookPath+"sachgiaovien-1.pdf"
+        ,pdfFind: true
+        ,pdfTextSelectable: true
+
+        ,lightbox : "#book3-trigger"
+        ,lightboxClass : "lightbox-pdf"
+        ,centeredWhenClosed : true
+        ,hardcovers : true
+        ,curl: false
+        ,toolbar: "lastLeft, left, currentPage, right, lastRight, find, zoomin, zoomout, fullscreen, thumbnails"
+        ,thumbnailsPosition : 'bottom'
+        ,responsiveHandleWidth : 50
+        ,onFullscreenError: fullscreenErrorHandler
+      });
+    })
+
+
+    $("#book2-trigger").on("click",function(){
+      buildBook( '#book2', {
+        height   : 1024
+        ,width    : 725*2
+        ,pageNumbers: false
+        ,pdf: pdfBookPath+"tai-lieu-luyen-thi-a2.pdf"
+        ,pdfFind: true
+        ,pdfTextSelectable: true
+
+        ,lightbox : "#book2-trigger"
+        ,lightboxClass : "lightbox-pdf"
+        ,centeredWhenClosed : true
+        ,hardcovers : true
+        ,curl: false
+        ,toolbar: "lastLeft, left, currentPage, right, lastRight, find, zoomin, zoomout, fullscreen, thumbnails"
+        ,thumbnailsPosition : 'bottom'
+        ,responsiveHandleWidth : 50
+        ,onFullscreenError: fullscreenErrorHandler
+      });
+    })
+
+    $("#book1-trigger").on("click",function(){
+      buildBook( '#book1', {
+        height   : 1024
+        ,width    : 1000*2
+        ,pageNumbers: false
+        ,pdf: pdfBookPath+"tai-lieu-luyen-thi-a1.pdf"
+        ,pdfFind: true
+        ,pdfTextSelectable: true
+
+        ,lightbox : "#book2-trigger"
+        ,lightboxClass : "lightbox-pdf"
+        ,centeredWhenClosed : true
+        ,hardcovers : true
+        ,curl: false
+        ,toolbar: "lastLeft, left, currentPage, right, lastRight, find, zoomin, zoomout, fullscreen, thumbnails"
+        ,thumbnailsPosition : 'bottom'
+        ,responsiveHandleWidth : 50
+        ,onFullscreenError: fullscreenErrorHandler
+      });
+    })
+
+  </script>
+@endsection

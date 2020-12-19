@@ -20,6 +20,44 @@
     </div>
 
     <section class="container pt-grid-gutter">
+        <div style='display: none'>
+            <div id="book2"></div>
+            <div id="book1"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+                <div id="book2-trigger" class="card border-0 box-shadow">
+                  <div class="card-body">
+                    <h5>Phân phối chương trình</h5>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+                <div id="book1-trigger" class="card border-0 box-shadow">
+                  <div class="card-body">
+                    <h5>Kế hoạch thực hiện</h5>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+              <a href="/giao-vien/tieng-anh-mam-non/tuoi-56/video-tham-khao">
+                <div class="card border-0 box-shadow">
+                  <div class="card-body">
+                    <h5>Video tham khảo</h5>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+              <a href="/giao-vien/tieng-anh-mam-non/tuoi-56/tai-lieu-tham-khao">
+                <div class="card border-0 box-shadow">
+                  <div class="card-body">
+                    <h5>Bối dưỡng giáo viên</h5>
+                  </div>
+                </div>
+              </a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-6 col-sm-12 mb-grid-gutter">
                 <div class="card border-0 box-shadow">
@@ -240,4 +278,55 @@
         </div>
     </section>
 
+@endsection
+
+
+
+
+@section('script')
+  <script>
+
+    $("#book2-trigger").on("click",function(){
+      buildBook( '#book2', {
+        height   : 1024
+        ,width    : 725*2
+        ,pageNumbers: false
+        ,pdf: pdfBookPath+"ppct.pdf"
+        ,pdfFind: true
+        ,pdfTextSelectable: true
+
+        ,lightbox : "#book2-trigger"
+        ,lightboxClass : "lightbox-pdf"
+        ,centeredWhenClosed : true
+        ,hardcovers : true
+        ,curl: false
+        ,toolbar: "lastLeft, left, currentPage, right, lastRight, find, zoomin, zoomout, fullscreen, thumbnails"
+        ,thumbnailsPosition : 'bottom'
+        ,responsiveHandleWidth : 50
+        ,onFullscreenError: fullscreenErrorHandler
+      });
+    })
+
+    $("#book1-trigger").on("click",function(){
+      buildBook( '#book1', {
+        height   : 1024
+        ,width    : 1000*2
+        ,pageNumbers: false
+        ,pdf: pdfBookPath+"khth.pdf"
+        ,pdfFind: true
+        ,pdfTextSelectable: true
+
+        ,lightbox : "#book2-trigger"
+        ,lightboxClass : "lightbox-pdf"
+        ,centeredWhenClosed : true
+        ,hardcovers : true
+        ,curl: false
+        ,toolbar: "lastLeft, left, currentPage, right, lastRight, find, zoomin, zoomout, fullscreen, thumbnails"
+        ,thumbnailsPosition : 'bottom'
+        ,responsiveHandleWidth : 50
+        ,onFullscreenError: fullscreenErrorHandler
+      });
+    })
+
+  </script>
 @endsection
