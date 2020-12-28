@@ -54,7 +54,7 @@ class Admin {
         // .where('product_link', url)
         // .first();
 
-        if (productId) {
+        if (productId != -1) {
           if (!request.auth) {
             return response.redirect('/dang-nhap')
           }
