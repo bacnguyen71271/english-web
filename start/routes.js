@@ -139,7 +139,7 @@ Route.group(() => {
   Route.on('/tuoi-56/chu-de-nghe-nghiep').render('page.giaovien.mamnon.tuoi56.topic-nghenghiep');
   Route.on('/tuoi-56/chu-de-hoat-dong').render('page.giaovien.mamnon.tuoi56.topic-hoatdong');
   Route.on('/tuoi-56/chu-de-di-sieu-thi').render('page.giaovien.mamnon.tuoi56.topic-disieuthi');
-  Route.on('/tuoi-56/chu-de-buatiec').render('page.giaovien.mamnon.tuoi56.topic-buatiec');
+  Route.on('/tuoi-56/chu-de-bua-tiec').render('page.giaovien.mamnon.tuoi56.topic-buatiec');
   Route.on('/tuoi-56/chu-de-di-mua-sam').render('page.giaovien.mamnon.tuoi56.topic-dimuasam');
   Route.on('/tuoi-56/chu-de-cong-trinh-xay-dung').render('page.giaovien.mamnon.tuoi56.topic-ctxd');
   Route.on('/tuoi-56/chu-de-cang-hang-khong').render('page.giaovien.mamnon.tuoi56.topic-canghangkhong');

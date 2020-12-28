@@ -45,10 +45,16 @@ class Admin {
 
         let url = request.url().replace(domain,'');
         let product = await Database.table('product')
-        .where('product_link', url)
-        .first();
 
-        if(product){
+        let productId = -1;
+        for (let index = 0; index < product.length; index++) {
+          const element = product[index];
+          if (request.url().indexOf(element.product_link) != -1) { productId = element }
+        }
+        // .where('product_link', url)
+        // .first();
+
+        if (productId) {
           if (!request.auth) {
             return response.redirect('/dang-nhap')
           }
@@ -62,7 +68,7 @@ class Admin {
             .join('codes', 'product_code.code_id', 'codes.id')
             .join('product', 'product.id', 'product_code.product_id')
             .where('product_code.user_id', request.auth.userid)
-            .where('product.id', product.id)
+            .where('product.id', productId.id)
             .where('product_code.exp_date', '>', this.getDateTimeBefore(0));
 
             // console.log(checkUser.toSQL());
