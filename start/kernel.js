@@ -18,6 +18,7 @@ const globalMiddleware = [
   'Adonis/Middleware/Shield',
   'Adonis/Middleware/AuthInit',
   'App/Middleware/ConvertEmptyStringsToNull',
+  'App/Middleware/Cookie'
   // 'App/Middleware/Auth',
 ]
 
@@ -60,7 +61,6 @@ const namedMiddleware = {
 const serverMiddleware = [
   'Adonis/Middleware/Static',
   'Adonis/Middleware/Cors',
-  'App/Middleware/Cookie'
 ]
 
 Server

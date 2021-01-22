@@ -13,6 +13,9 @@ class Admin {
    * @param {Function} next
    */
   async handle({request, response }, next) {
+    
+    console.log(request.method() + ': ' +request.url());
+
     const domain = Env.get('DOMAIN', 'http://127.0.0.1:3333');
     try {
       const authCookie = request.cookie('auth_cookie');
@@ -44,7 +47,7 @@ class Admin {
 
 
         let url = request.url().replace(domain,'');
-        let product = await Database.table('product')
+        let product = await Database.table('product');
 
         let productId = -1;
         for (let index = 0; index < product.length; index++) {

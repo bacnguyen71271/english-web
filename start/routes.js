@@ -35,9 +35,8 @@ Route.post('/login', 'AuthController.login');
 
 Route.group(() => {
     Route.on('/').render('admin.index');
-    Route.on('/product-category').render('admin.product-category');
-
-    Route.get('/product/code', 'ProductController.viewProductCode');
+    Route.get('/product/category', 'Admin/CategoryController.index');
+    Route.get('/product/code', 'Admin/ProductController.viewProductCode');
 
 }).prefix('admin').middleware('admin');//.middleware(['admin']);
 
