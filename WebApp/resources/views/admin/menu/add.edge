@@ -1,0 +1,165 @@
+@layout('layout.adminlayout')
+@section('content')
+
+<style>
+    .item_remove {
+        cursor: pointer;
+        padding: 1px 7px;
+        background-color: #fa4343;
+        color: #fff;
+    }
+</style>
+    <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h2 class="content-header-title float-left mb-0">Thêm menu mới</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel33">Thêm item mới</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form id="generator-menu-item">
+                    {{ csrfField() }}
+                    <div class="modal-body">
+
+                        <label>Tiêu đề: </label>
+                        <div class="form-group">
+                            <input type="text" name="code" class="form-control">
+                        </div>
+
+                        <label>Link: </label>
+                        <div class="form-group">
+                            <input type="text" name="link" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-accept btn btn-primary waves-effect waves-light">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="content-body">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row menu-item">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-warning mr-1 mb-1 waves-effect waves-light" data-toggle="modal" data-target="#inlineForm"><i class="feather icon-plus"></i>Thêm item</button>
+                                    <ul class="list-group" id="basic-list-group">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form class="form form-horizontal" id="submit_form" data-id="" data-action="add">
+                                <input type="text" hidden name="product_id">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="title">Tiêu đề</label>
+                                                <input type="text" id="title" class="form-control" name="title" placeholder="Tiêu đề">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="title">Vị trí menu</label>
+                                                <select class="form-control" name="position" id="position">
+                                                    <option class="" value="">-- Chọn vị trí --</option>
+                                                    <option class="" value="menu-top">Menu top</option>
+                                                    <option class="" value="menu-footer">Menu footer</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <fieldset class="checkbox">
+                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                    <input type="checkbox" name="status">
+                                                    <span class="vs-checkbox">
+                                                        <span class="vs-checkbox--check">
+                                                            <i class="vs-icon feather icon-check"></i>
+                                                        </span>
+                                                    </span>
+                                                    <span class="">Xuất bản</span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <button type="button" id="save-button" class="w-100 btn btn-primary waves-effect waves-light">LƯU</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        dragula([document.getElementById('basic-list-group')]);
+
+        $('#basic-list-group').delegate('.item_remove', 'click', function () {
+            $(this).closest('li').remove()
+        })
+
+        $('.btn-accept').click(function () {
+            $('#basic-list-group').append('<li class="list-group-item draggable"> <div class="media"> <div class="media-body"> <h5 class="menu-item__name">'+$('#generator-menu-item input[name="code"]').val()+'</h5> <span class="menu-item__link">'+$('#generator-menu-item input[name="link"]').val()+'</span> </div> <span class="item_remove">x</span> </div> </li>')
+            $('#generator-menu-item input[name="code"]').val('')
+            $('#generator-menu-item input[name="link"]').val('')
+            $('#inlineForm').modal('toggle')
+        })
+
+
+        $('#save-button').click(function () {
+            let data = []
+            $('#basic-list-group li').each(function (index, el) {
+                data.push({
+                    title: $(el).find('.menu-item__name').text(),
+                    link: $(el).find('.menu-item__link').text()
+                })
+            })
+
+
+            if (confirm('Lưu menu này ?')) {
+                $.ajax({
+                    url: '/api/v1/menu',
+                    data: {
+                        _csrf: '{{ csrfToken }}',
+                        data: data,
+                        status: $('#submit_form').find('input[name="status"]').is(":checked"),
+                        position: $('#submit_form').find('select[name="position"]').val(),
+                        title: $('#submit_form').find('input[name="title"]').val()
+                    },
+                    method: 'post',
+                    dataType: 'json',
+                }).done(function (res) {
+                    if (res.code == 1) {
+                        window.location.href = '/admin/menu'
+                    } else {
+                        alert(res.message)
+                    }
+                })
+            }
+        })
+    </script>
+@endsection

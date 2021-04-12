@@ -1,0 +1,206 @@
+@layout('layout.adminlayout')
+@section('content')
+    <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h2 class="content-header-title float-left mb-0">Danh sách sản phẩm</h2>
+                </div>
+            </div>
+        </div>
+        <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+            <div class="form-group breadcrum-right">
+                <a type="button" class="btn btn-warning mr-1 mb-1 waves-effect waves-light" href="/admin/shop/add"><i class="feather icon-plus"></i> Tạo sản phẩm mới</a>
+            </div>
+        </div>
+    </div>
+    <div class="content-body">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form class="form form-horizontal" method="GET">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="title">Mã sản phẩm</label>
+                                                <input type="text" id="title" class="form-control" name="code" placeholder="##-###-##">
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="title">Loại sản phẩm</label>
+                                                <select name="product-type" class="form-control">
+                                                    <option value="">ESING level 1</option>
+                                                    <option value="">ESING level 2</option>
+                                                    <option value="">ESING level 3</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="title">Ngày phát hành</label>
+                                                <input type="date" name="released_day" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="title">Ngày sử dụng</label>
+                                                <input type="date" name="used_day" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="title">Người dùng</label>
+                                                <input type="text" name="user" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="title">Trạng thái</label>
+                                                <select name="status" class="form-control">
+                                                    <option value="0">Tất cả</option>
+                                                    <option value="1">Đã sử dụng</option>
+                                                    <option value="2">Chưa sử dụng</option>
+                                                    <option value="3">Hết hạn</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light float-right">Tìm kiếm</button>
+                                                <a type="reset" href="/admin/shop?page={{ products.page }}" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light float-right">Đặt lại bộ lọc</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Người dùng</th>
+                                        <th>Loại sản phẩm</th>
+                                        <th>Ngày phát hành</th>
+                                        <th>Ngày sử dụng</th>
+                                        {{--  <th>Trạng thái</th>  --}}
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @each(code in productcode.data)
+                                        <tr>
+                                            <th scope="row">{{ code.code }}</th>
+                                            <td>
+                                                @if(code.username)
+                                                    {{ code.username }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                            @if(code.product_id == 1)
+                                                ESING level 1
+                                            @elseif(code.product_id == 2)
+                                                ESING level 2
+                                            @elseif(code.product_id == 3)
+                                                ESING level 3
+                                            @endif
+                                            </td>
+                                            <td>{{ toDateTime(code.created_at) }}</td>
+                                            <td>
+                                                @if(code.used_at)
+                                                    {{toDateTime(code.used_at)}}
+                                                @endif
+                                            </td>
+                                            {{--  <td>{{ code.status }}</td>  --}}
+                                        </tr>
+                                    @endeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <ul class="pagination url1-links"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+
+        let visiblePages = 5;
+        if ($(window).width() < 768) {
+            visiblePages = 2;
+        }
+
+        $('#generator-code').submit(function (e) {
+            let self = $(this);
+            e.preventDefault();
+            $.ajax({
+                url: '/api/v1/generator-code',
+                type: 'POST',
+                dataType: 'json',
+                data: self.serialize(),
+                success: function (res) {
+                    if (res.code === 1) {
+                        self.find('input[name="code"]').val(res.data);
+                        $('.useCode').removeAttr('disabled');
+                    }
+                }
+            })
+        });
+
+        $('.useCode').click(function () {
+            let code = $('#generator-code input[name="code"]').val();
+            let productid = $('#generator-code select[name="productid"]').val();
+            $.ajax({
+                url: '/api/v1/apply-code',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    _csrf: '{{ csrfToken }}',
+                    code: code,
+                    productid: productid
+                },
+                success: function (res) {
+                    if (res.code === 1) {
+                        location.reload();
+                    } else {
+                        alert(res.msg);
+                    }
+                }
+            })
+        })
+
+        
+        $('.url1-links').twbsPagination({
+            totalPages: {{ productcode.lastPage }},
+            visiblePages: visiblePages,
+            prev: 'Trước đó',
+            first: 'Đầu tiên',
+            last: 'Trang cuối',
+            next: 'Trang tiếp',
+            startPage: {{ productcode.page }},
+            // href: '?page={{page}}',
+            // hrefVariable: '{{page}}',
+            onPageClick: function (event, page) {
+                setParams({
+                    page
+                }, true)
+            }
+        });
+
+    </script>
+@endsection

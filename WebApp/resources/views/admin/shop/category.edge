@@ -1,0 +1,248 @@
+@layout('layout.adminlayout')
+@section('content')
+    <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h2 class="content-header-title float-left mb-0">Danh mục sản phẩm</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-body">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Thêm danh mục sản phẩm mới</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form class="form form-horizontal" id="submit_form" data-id="" data-action="add">
+                                <input type="text" hidden name="product_id">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="title">Tiêu đề</label>
+                                                <input type="text" id="title" class="form-control" name="title" placeholder="Tiêu đề">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="title">Danh mục cha</label>
+                                                <select class="form-control" name="category_parent">
+                                                    <option class="" value="0">-- Không có danh mục cha --</option>
+                                                    @each(product in products)
+                                                    <option value="{{ product.id }}"> {{ product.title }} </option>
+                                                        @each(prChild in product.childs)
+                                                            <option class="" value="{{ prChild.id }}">--| {{ prChild.title }} </option>
+                                                            @each(prChild2 in prChild.childs)
+                                                                <option value="{{ prChild2.id }}">----| {{ prChild2.title }} </option>
+                                                            @endeach
+                                                        @endeach
+                                                    @endeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <fieldset class="checkbox">
+                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                    <input type="checkbox" name="status">
+                                                    <span class="vs-checkbox">
+                                                        <span class="vs-checkbox--check">
+                                                            <i class="vs-icon feather icon-check"></i>
+                                                        </span>
+                                                    </span>
+                                                    <span class="">Xuất bản</span>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light float-right">Lưu</button>
+                                            <button class="btn btn-warning mr-1 mb-1 waves-effect waves-light float-right" id="btn-form-cancel">Hủy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>ID</th>
+                                        <th>TÊN DANH MỤC</th>
+                                        <th>ĐƯỜNG DẪN</th>
+                                        <th>TRẠNG THÁI</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @each(product in products)
+                                        <tr data-id="{{ product.id }}">
+                                            <td>|</td>
+                                            <th scope="row">{{ product.id }}</th>
+                                            <td>{{ product.title }}</td>
+                                            <td><a target="_blank" href="../../danh-muc/{{ toSlug(product.title) + '-' + product.id }}">danh-muc/{{ toSlug(product.title) + '-' + product.id }}</a></td>
+                                            <td>{{ product.status ? 'Mở' : 'Đóng'}}</td>
+                                            <td><div class="edit-product btn btn-primary">Sửa</div></td>
+                                            <td><div class="edit-delete btn btn-danger">Xóa</div></td>
+                                        </tr>
+                                            @each(prChild in product.childs)
+                                                <tr data-id="{{ prChild.id }}">
+                                                    <td>|------</td>
+                                                    <th scope="row">{{ prChild.id }}</th>
+                                                    <td>{{ prChild.title }}</td>
+                                                    <td><a target="_blank" href="../../danh-muc/{{ toSlug(prChild.title) + '-' + prChild.id }}">danh-muc/{{ toSlug(prChild.title) + '-' + prChild.id }}</a></td>
+                                                    <td>{{ prChild.status ? 'Mở' : 'Đóng'}}</td>
+                                                    <td><div class="edit-product btn btn-primary">Sửa</div></td>
+                                                    <td><div class="edit-delete btn btn-danger">Xóa</div></td>
+                                                </tr>
+                                                @each(prChild2 in prChild.childs)
+                                                    <tr data-id="{{ prChild2.id }}">
+                                                        <td>|------------</td>
+                                                        <th scope="row">{{ prChild2.id }}</th>
+                                                        <td>{{ prChild2.title }}</td>
+                                                        <td><a target="_blank" href="../../danh-muc/{{ toSlug(prChild2.title) + '-' + prChild2.id }}">danh-muc/{{ toSlug(prChild2.title) + '-' + prChild2.id }}</a></td>
+                                                        <td>{{ prChild2.status ? 'Mở' : 'Đóng'}}</td>
+                                                        <td><div class="edit-product btn btn-primary">Sửa</div></td>
+                                                        <td><div class="edit-delete btn btn-danger">Xóa</div></td>
+                                                    </tr>
+                                                @endeach
+                                            @endeach
+                                        @endeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+<script>
+    $(".edit-product").click(function() {
+
+        let id = $(this).closest('tr').attr('data-id')
+        $.ajax({
+            url: '/api/v1/product/category/'+ id,
+            method: 'get',
+            dataType: 'json',
+        }).done(function (res) {
+            if (res.code == 1) {
+                $('#submit_form').attr('data-id', id)
+                $('#submit_form').attr('data-action', 'edit')
+
+                $('#submit_form').find('input[name="title"]').val(res.data.title)
+                $('#submit_form').find('select[name="category_parent"]').val(res.data.parent_id)
+                if (res.data.status != $('#submit_form').find('input[name="status"]').is(":checked")) {
+                    $('#submit_form').find('input[name="status"]').click()
+                }
+
+                $('.card-title').text('Sửa danh mục sản phẩm')
+            } else {
+                alert(res.message)
+            }
+        })
+
+    })
+
+    $('#btn-form-cancel').click(function (e){
+        e.preventDefault()
+        $('.card-title').text('Thêm danh mục sản phẩm mới')
+        $('#submit_form').attr('data-action', 'add')
+
+        $('#submit_form').find('input[name="title"]').val('')
+        $('#submit_form').find('select[name="category_parent"]').val(0)
+    })
+
+    $('#submit_form').submit(function(e) {
+        e.preventDefault()
+
+        let action = $('#submit_form').attr('data-action')
+        let id = $('#submit_form').attr('data-id')
+
+        if (action == 'edit') {
+            if (confirm('Bạn muốn lưu thay đổi này ?')) {
+                $.ajax({
+                    url: '/api/v1/product/category',
+                    data: {
+                        _csrf: '{{ csrfToken }}',
+                        status: $('#submit_form').find('input[name="status"]').is(":checked"),
+                        id: id,
+                        parent_id: $('#submit_form').find('select[name="category_parent"]').val(),
+                        title: $('#submit_form').find('input[name="title"]').val()
+                    },
+                    method: 'put',
+                    dataType: 'json',
+                }).done(function (res) {
+                    if (res.code == 1) {
+                        window.location.reload()
+                    } else {
+                        alert(res.message)
+                    }
+                })
+            }
+        }
+
+
+        if (action == 'add') {
+            if (confirm('Bạn muốn thêm danh mục này ?')) {
+                $.ajax({
+                    url: '/api/v1/product/category',
+                    data: {
+                        _csrf: '{{ csrfToken }}',
+                        status: $('#submit_form').find('input[name="status"]').is(":checked"),
+                        parent_id: $('#submit_form').find('select[name="category_parent"]').val(),
+                        title: $('#submit_form').find('input[name="title"]').val()
+                    },
+                    method: 'post',
+                    dataType: 'json',
+                }).done(function (res) {
+                    if (res.code == 1) {
+                        window.location.reload()
+                    } else {
+                        alert(res.message)
+                    }
+                })
+            }
+        }
+        
+    })
+
+    $(".edit-delete").click(function() {
+        let id = $(this).closest('tr').attr('data-id')
+        if (id && id != '') {
+            if (confirm('Xóa danh mục này ?')) {
+                $.ajax({
+                    url: '/api/v1/product/category',
+                    method: 'delete',
+                    data: {
+                        _csrf: '{{ csrfToken }}',
+                        id
+                    },
+                    dataType: 'json'
+                }).done(function (res) {
+                    if (res.code == 1) {
+                        window.location.reload()
+                    } else {
+                        alert(res.message)
+                    }
+                })
+            }
+        }
+    })
+</script>
+@endsection

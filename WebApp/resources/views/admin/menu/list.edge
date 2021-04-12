@@ -1,0 +1,91 @@
+@layout('layout.adminlayout')
+@section('content')
+    <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h2 class="content-header-title float-left mb-0">Danh sách menu</h2>
+                </div>
+            </div>
+        </div>
+        <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+            <div class="form-group breadcrum-right">
+                <a type="button" class="btn btn-warning mr-1 mb-1 waves-effect waves-light" href="/admin/menu/add"><i class="feather icon-plus"></i> Tạo menu mới</a>
+            </div>
+        </div>
+    </div>
+    <div class="content-body">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>TÊN MENU</th>
+                                        <th>VỊ TRÍ</th>
+                                        <th>TRẠNG THÁI</th>
+                                        <th width="200"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @each(menu in menus)
+                                        <tr data-id="{{ menu.id }}">
+                                            <th scope="row">{{ menu.id }}</th>
+                                            <td>
+                                                @if(menu.title) 
+                                                {{ menu.title }} 
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if(menu.position == 'menu-top') 
+                                                    Menu top
+                                                @elseif(menu.position == 'menu-footer')
+                                                    Menu footer
+                                                @endif
+                                            </td>
+                                            <td>{{ menu.status ? 'Mở' : 'Đóng'}}</td>
+                                            <td>
+                                                <a class="edit-product btn btn-primary" href="/admin/menu/edit/{{ menu.id }}" >Sửa</a>
+                                                <div data-id="{{ menu.id }}" class="btn-delete btn btn-danger">Xóa</div>
+                                            </td>
+                                        </tr>
+                                        @endeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        $('.btn-delete').click(function () {
+            if (confirm('Bạn chắc chắn xóa ?')) {
+                const id = $(this).attr('data-id')
+                $.ajax({
+                    url: '/api/v1/menu',
+                    data: {
+                        _csrf: '{{ csrfToken }}',
+                        id: id
+                    },
+                    method: 'delete',
+                    dataType: 'json',
+                }).done(function (res) {
+                    if (res.code == 1) {
+                        window.location.href = '/admin/menu'
+                    } else {
+                        alert(res.message)
+                    }
+                })
+            }
+        })
+    </script>
+@endsection
