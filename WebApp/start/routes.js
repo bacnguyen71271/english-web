@@ -71,6 +71,10 @@ Route.group(() => {
 
 }).prefix('api/v1');
 
+Route.group(() => {
+  Route.post('auth/login', 'AuthController.login')
+  Route.get('auth/get-info', 'AuthController.check')
+}).prefix('adapi/v1')
 
 Route.group(() => {
 
