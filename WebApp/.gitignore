@@ -16,4 +16,4 @@ database/*.sqlite
 .idea
 
 
-public/uploads/video
+#public/uploads/video
