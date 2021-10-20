@@ -152,7 +152,7 @@ export default {
       localStorage.removeItem('userData')
 
       // Reset ability
-      this.$ability.update(initialAbility)
+      // this.$ability.update(initialAbility)
 
       // Redirect to login page
       this.$router.push({ name: 'auth-login' })

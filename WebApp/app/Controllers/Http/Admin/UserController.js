@@ -81,11 +81,11 @@ class UserController {
     }
 
     async deleteUserRole ({request, response}) {
-        const { username, role_id } = request.all()
+        const { user_id, role_id } = request.all()
 
-        if (username && role_id) {
+        if (user_id && role_id) {
             await Database.table('rbac_assignment')
-            .where('user_name', username)
+            .where('user_id', user_id)
             .where('item_id', role_id)
             .delete()
 
@@ -102,24 +102,24 @@ class UserController {
     }
 
     async addUserToRole ({request, response}) {
-        const { username, role_id } = request.all()
+        const { user_id, role_id } = request.all()
         let error = ''
         // Check user 
         const checkUser = await Database.table('users')
-        .where('username', username)
+        .where('user_id', user_id)
         .first()
 
         if (checkUser) {
             // Check user in role
             const checkRole = await Database.table('rbac_assignment')
-            .where('user_name', username)
+            .where('user_id', user_id)
             .where('item_id', role_id)
             .first()
 
             if (!checkRole) {
                 await Database.table('rbac_assignment')
                 .insert({
-                    user_name: username,
+                    user_id: user_id,
                     item_id: role_id
                 })
 
@@ -164,7 +164,9 @@ class UserController {
 
         if (role_id) {
             const listUser = await Database.table('rbac_assignment')
+            .join('users', 'users.id', 'rbac_assignment.user_id')
             .where('item_id', role_id)
+            .select('users.id', 'users.email', 'users.fullname')
 
             return response.json({
                 code: 1,

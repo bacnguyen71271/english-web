@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  publicPath: '/',
+  publicPath: '/english-web/admin-client/dist',
   css: {
     loaderOptions: {
       sass: {

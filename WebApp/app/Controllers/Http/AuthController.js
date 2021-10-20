@@ -226,7 +226,7 @@ class AuthController {
           code: 1,
           data: {
               id: auth.user.id,
-              username: auth.user.username
+              username: auth.user.email
           }
       })
     } catch (error) {

@@ -53,16 +53,16 @@
                                         <thead>
                                             <tr>
                                                 <th>STT</th>
-                                                <th>Username</th>
+                                                <th>Email</th>
                                                 <th>Thao tác</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="(item, index) in listUser" :key="index">
                                                 <td><span class="font-weight-bold">{{ index + 1 }}</span></td>
-                                                <td>{{ item.user_name }}</td>
+                                                <td>{{ item.email }}</td>
                                                 <td>
-                                                    <b-button style="border: none;float:right;background-color: #7367f0 !important;" @click="deleteUserRole(item.user_name)" >Xóa vai trò</b-button>
+                                                    <b-button style="border: none;float:right;background-color: #7367f0 !important;" @click="deleteUserRole(item)" >Xóa vai trò</b-button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -395,9 +395,9 @@ export default {
                 }
             })
         },
-        deleteUserRole(username) {
+        deleteUserRole(user) {
             this.$bvModal
-            .msgBoxConfirm(`Xác nhân xóa người dùng ${username} ?`, {
+            .msgBoxConfirm(`Xác nhân xóa người dùng ${user.email} ?`, {
                 title: 'Please Confirm',
                 size: 'sm',
                 okVariant: 'primary',
@@ -411,7 +411,7 @@ export default {
                 if (value) {
                     useJwt.post('auth/role-delete-user', {
                         role_id: this.roleSelect.id,
-                        username
+                        user_id: user.id
                     })
                     .then(response => {
                         if (response.data.code === 1) {
@@ -571,7 +571,7 @@ export default {
             .then(value => {
                 if (value) {
                     useJwt.post('auth/role-add-user', {
-                        username: this.username,
+                        user_id: this.username,
                         role_id: this.roleSelect.id
                     })
                     .then(response => {

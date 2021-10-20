@@ -3,11 +3,6 @@
         <b-modal @ok="createUserAction" size="lg" id="modal-login" cancel-variant="outline-secondary" ok-title="Submit" cancel-title="Cancel" centered title="Thêm người dùng" v-model="showAddModal" >
             <b-form>
                 <b-form-group>
-                    <label for="username">Tên đăng nhập:</label>
-                    <b-form-input v-if="modalMode == 'add'" type="text" v-model="create_username" placeholder="Tên đăng nhập"/>
-                    <span class="w-100 d-flex" v-if="modalMode == 'edit'">{{ create_username }}</span>
-                </b-form-group>
-                <b-form-group>
                     <label for="fullname">Họ tên:</label>
                     <b-form-input type="text" v-model="create_fullname" placeholder="Họ tên"/>
                 </b-form-group>
@@ -32,9 +27,6 @@
                                 </b-form-group>
                             </b-col>
                             <b-col cols="3">
-                                <b-form-group label="Email" label-for="h-user">
-                                    <b-form-input id="h-user" v-model="email" placeholder="Email" />
-                                </b-form-group>
                             </b-col>
                             <b-col cols="6">
                                 <b-button style="margin-top: 20px;border: none;float:right;background-color: #7367f0 !important;" @click="fetchDataUser()" >Lọc dữ liệu</b-button>
@@ -63,7 +55,6 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>USERNAME</th>
                                         <th>EMAIL</th>
                                         <th>FULLNAME</th>
                                         <th>CREATED</th>
@@ -73,7 +64,6 @@
                                 <tbody>
                                     <tr v-for="usr in userList.data" :key="usr.id">
                                         <td><span class="font-weight-bold">{{ usr.id }}</span></td>
-                                        <td>{{ usr.username }}</td>
                                         <td>{{ usr.email }}</td>
                                         <td>{{ usr.fullname }}</td>
                                         <td>{{ toDateTime(usr.created_at) }}</td>
@@ -155,7 +145,6 @@ export default {
             email: '',
             page: 1,
             showAddModal: false,
-            create_username: '',
             create_email: '',
             create_password: '',
             create_fullname: '',
@@ -168,7 +157,6 @@ export default {
     },
     methods: {
         editItem(user) {
-            this.create_username = user.username
             this.create_email = user.email
             this.create_password = ''
             this.create_fullname = user.fullname
@@ -192,7 +180,6 @@ export default {
                 .then(value => {
                     if (value) {
                         useJwt.post('auth/create-user', {
-                            username: this.create_username,
                             email: this.create_email,
                             password: this.create_password,
                             fullname: this.create_fullname
@@ -241,7 +228,6 @@ export default {
                 .then(value => {
                     if (value) {
                         useJwt.post('auth/update-user', {
-                            username: this.create_username,
                             email: this.create_email,
                             password: this.create_password,
                             fullname: this.create_fullname,

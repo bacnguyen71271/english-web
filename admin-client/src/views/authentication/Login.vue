@@ -58,13 +58,13 @@
             >
               <!-- email -->
               <b-form-group
-                label="Tên đăng nhập"
+                label="Email"
                 label-for="login-email"
               >
                 <validation-provider
                   #default="{ errors }"
-                  name="Username"
-                  vid="username"
+                  name="Email"
+                  vid="email"
                   rules="required"
                 >
                   <b-form-input
@@ -72,7 +72,7 @@
                     v-model="userEmail"
                     :state="errors.length > 0 ? false:null"
                     name="login-email"
-                    placeholder="esing123.com"
+                    placeholder="abc@gmail.com"
                   />
                   <small class="text-danger">{{ errors[0] }}</small>
                 </validation-provider>
